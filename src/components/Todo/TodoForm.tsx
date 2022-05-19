@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../../modules/todos';
 
-interface TodoFormProps {
-  onAddTodo: (text: string) => void;
-}
-
-const TodoForm = ({ onAddTodo }: TodoFormProps) => {
+const TodoForm = () => {
   const [text, setText] = useState('');
+  const dispatch = useDispatch();
+
+  // 매번 랜더링 될 때마다 새로 만들지 않고 재사용
+  const onCreate = useCallback((text) => dispatch(addTodo(text)), [dispatch]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
@@ -14,7 +16,7 @@ const TodoForm = ({ onAddTodo }: TodoFormProps) => {
   const handleAddTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setText('');
-    onAddTodo(text);
+    onCreate(text);
   };
 
   return (

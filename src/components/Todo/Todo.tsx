@@ -1,28 +1,27 @@
-import React from 'react';
-import { Categories } from '../../App';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { Categories, deleteTodo } from '../../modules/todos';
 
 interface TodoProps {
   id: number;
   text: string;
-  category: 'TODO' | 'DOING' | 'DONE';
-  onChangeCategory: (id: number, category: Categories) => void;
-  onDeleteTodo: (id: number) => void;
+  category: Categories;
 }
 
-const Todo = ({
-  id,
-  text,
-  category,
-  onChangeCategory,
-  onDeleteTodo,
-}: TodoProps) => {
+const Todo = ({ id, text, category }: TodoProps) => {
+  const dispatch = useDispatch();
+  const onDelete = useCallback(
+    (id, category) => dispatch(deleteTodo(id, category)),
+    [dispatch]
+  );
+
   return (
     <li className="flex items-center my-1 flex-wrap group">
       <p>▪{text}</p>
       <div className="tablet:hidden group-hover:block">
-        {(category === 'DOING' || category === 'DONE') && (
+        {/* {(category === 'DOING' || category === 'DONE') && (
           <button
-            className={`button-style bg-rose-100`}
+            className={`todo-button bg-rose-100`}
             onClick={() => onChangeCategory(id, 'TODO')}
           >
             Todo
@@ -30,7 +29,7 @@ const Todo = ({
         )}
         {(category === 'TODO' || category === 'DONE') && (
           <button
-            className={`button-style bg-amber-100`}
+            className={`todo-button bg-amber-100`}
             onClick={() => onChangeCategory(id, 'DOING')}
           >
             Doing
@@ -38,15 +37,15 @@ const Todo = ({
         )}
         {(category === 'TODO' || category === 'DOING') && (
           <button
-            className="button-style bg-blue-300"
+            className="todo-button bg-blue-300"
             onClick={() => onChangeCategory(id, 'DONE')}
           >
             Done
           </button>
-        )}
+        )} */}
         <button
-          onClick={() => onDeleteTodo(id)}
-          className="button-style group-hover:visible bg-gray-400"
+          onClick={() => onDelete(id, category)}
+          className="todo-button group-hover:visible bg-gray-400"
         >
           x
         </button>
