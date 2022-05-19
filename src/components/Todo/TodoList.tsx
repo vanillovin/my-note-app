@@ -26,51 +26,33 @@ const TodoList = ({
     <div className="w-full mt-6">
       <TodoForm onAddTodo={onAddTodo} />
       <div className="flex flex-col tablet:flex-row">
-        <div className="tablet:w-1/3 bg-white border border-white m-2 p-2 rounded-sm">
-          <h2 className="font-bold mb-2">TODO</h2>
-          <ul>
-            {todosByCategory[0].map(({ id, text, category }) => (
-              <Todo
-                key={id}
-                id={id}
-                text={text}
-                category={category}
-                onChangeCategory={onChangeCategory}
-                onDeleteTodo={onDeleteTodo}
-              />
-            ))}
-          </ul>
-        </div>
-        <div className="tablet:w-1/3 bg-white border border-white m-2 p-2 rounded-sm">
-          <h2 className="font-bold mb-2">DOING</h2>
-          <ul>
-            {todosByCategory[1].map(({ id, text, category }) => (
-              <Todo
-                key={id}
-                id={id}
-                text={text}
-                category={category}
-                onChangeCategory={onChangeCategory}
-                onDeleteTodo={onDeleteTodo}
-              />
-            ))}
-          </ul>
-        </div>
-        <div className="tablet:w-1/3 bg-white border border-white m-2 p-2 rounded-sm">
-          <h2 className="font-bold mb-2">DONE</h2>
-          <ul>
-            {todosByCategory[2].map(({ id, text, category }) => (
-              <Todo
-                key={id}
-                id={id}
-                text={text}
-                category={category}
-                onChangeCategory={onChangeCategory}
-                onDeleteTodo={onDeleteTodo}
-              />
-            ))}
-          </ul>
-        </div>
+        {[
+          ['TODO', todosByCategory[0]],
+          ['DOING', todosByCategory[1]],
+          ['DONE', todosByCategory[2]],
+        ].map(([title, todos], i) => (
+          <div
+            key={i}
+            className="tablet:w-1/3 bg-white border border-white m-2 p-3 rounded-sm"
+          >
+            <h2 className="font-bold mb-2 pb-2 border-b border-gray-200">
+              {title}
+            </h2>
+            <ul>
+              {typeof todos !== 'string' &&
+                todos.map(({ id, text, category }) => (
+                  <Todo
+                    key={id}
+                    id={id}
+                    text={text}
+                    category={category}
+                    onChangeCategory={onChangeCategory}
+                    onDeleteTodo={onDeleteTodo}
+                  />
+                ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

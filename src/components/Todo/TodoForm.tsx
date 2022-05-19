@@ -20,13 +20,16 @@ const TodoForm = ({ onAddTodo }: TodoFormProps) => {
   return (
     <form className="flex p-2 w-full" onSubmit={handleAddTodo}>
       <input
-        className="rounded-sm p-2 outline-none border-b-2 border-white bg-transparent 
-                transition-all flex-grow"
+        className="rounded-sm p-2 outline-none border-b-2 border-white bg-transparent text-white
+                  transition-all flex-grow placeholder:text-transparent placeholder:hover:text-white"
         value={text}
         onChange={onChange}
         placeholder="할 일을 입력하세요"
       />
-      <button className="border-b-2 px-4 border-white rounded-sm" type="submit">
+      <button
+        className="border-b-2 px-4 border-white text-white font-bold text-lg"
+        type="submit"
+      >
         +
       </button>
     </form>
