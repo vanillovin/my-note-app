@@ -16,9 +16,13 @@ export const deleteTodo = (id: number, category: Categories) => ({
   type: DELETE_TODO,
   payload: { id, category },
 });
-export const changeCategory = (id: number, category: Categories) => ({
+export const changeCategory = (
+  id: number,
+  curCat: Categories,
+  cat: Categories
+) => ({
   type: CHANGE_CATEGORY,
-  payload: { id, category },
+  payload: { id, curCat, cat },
 });
 
 // 모든 액션 객체들에 대한 타입
@@ -35,18 +39,9 @@ export type Todo = {
 export type TodosState = { todo: Todo[]; doing: Todo[]; done: Todo[] };
 
 const initialState: TodosState = {
-  todo: [
-    { id: 1, text: "Hello I'm TODO1" },
-    { id: 2, text: "Hello I'm TODO2" },
-  ],
-  doing: [
-    { id: 1, text: "Hello I'm DOING1" },
-    { id: 2, text: "Hello I'm DOING2" },
-  ],
-  done: [
-    { id: 1, text: "Hello I'm DONE1" },
-    { id: 2, text: "Hello I'm DONE2" },
-  ],
+  todo: [{ id: 1, text: "Hello I'm TODO" }],
+  doing: [{ id: 2, text: "Hello I'm DOING" }],
+  done: [{ id: 3, text: "Hello I'm DONE" }],
 };
 
 export default function todos(
@@ -69,11 +64,19 @@ export default function todos(
     case CHANGE_CATEGORY:
       return {
         ...state,
-        // ex) todo-id:1 -> done = 투두에서 지우고 던에 추가
-        [action.payload.category]: state[action.payload.category].filter(
+        [action.payload.curCat]: state[action.payload.curCat].filter(
           (todo) => todo.id !== action.payload.id
         ),
+        [action.payload.cat]: [
+          ...state[action.payload.cat],
+          {
+            ...state[action.payload.curCat].find(
+              (todo) => todo.id === action.payload.id
+            ),
+          },
+        ],
       };
+
     default:
       return state;
   }
