@@ -1,8 +1,9 @@
 // create root reducer
 import { combineReducers } from 'redux';
 import todos from './todos';
+import diary from './diary';
 
-const rootReducer = combineReducers({ todos });
+const rootReducer = combineReducers({ todos, diary });
 
 export default rootReducer;
 
