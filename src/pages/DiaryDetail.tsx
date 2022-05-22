@@ -84,8 +84,11 @@ const DiaryDetail = () => {
   return (
     <>
       <div className="m-10">
-        <div className="flex flex-wrap items-center justify-between border-b-2 border-white pb-3 mb-3 tablet:pb-5 tablet:mb-5">
-          <div className="flex flex-wrap items-end">
+        <div
+          className="flex flex-wrap items-center justify-between border-b-2 border-white 
+                      dark:border-stone-300 pb-3 mb-3 tablet:pb-5 tablet:mb-5"
+        >
+          <div className="flex flex-wrap items-end dark:text-stone-300">
             <h2 className="text-sm tablet:text-lg font-bold mr-1">
               {diary?.title}
             </h2>

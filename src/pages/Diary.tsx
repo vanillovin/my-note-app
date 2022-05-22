@@ -57,7 +57,7 @@ const Diary = () => {
         {categories.map(({ id, title, color }) => (
           <div
             key={id}
-            className={`diary group`}
+            className={`diary group dark:opacity-80`}
             style={{
               backgroundColor: `${color}`,
             }}

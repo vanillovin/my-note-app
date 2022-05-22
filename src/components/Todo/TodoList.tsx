@@ -18,9 +18,9 @@ const TodoList = () => {
         {categories.map((v) => (
           <div
             key={v}
-            className="tablet:w-1/3 bg-white border border-white m-2 p-3 rounded-sm shadow-md"
+            className="tablet:w-1/3 bg-white border border-white m-2 p-3 rounded-sm shadow-md dark:bg-opacity-40"
           >
-            <h2 className="font-bold mb-2 pb-2 border-b border-gray-200">
+            <h2 className="text-sm tablet:text-base font-bold mb-2 pb-2 border-b border-gray-200">
               {v.toUpperCase()}
             </h2>
             <ul>

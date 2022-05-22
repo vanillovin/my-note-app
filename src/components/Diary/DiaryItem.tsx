@@ -54,7 +54,7 @@ const DiaryItem = () => {
 
   return (
     <div className="w-full tablet:w-3/5">
-      <div className="bg-white p-4 tablet:p-6">
+      <div className="bg-white p-4 tablet:p-6 dark:bg-opacity-80">
         <div className="w-full flex flex-wrap items-center justify-between border-b border-black pb-3">
           <h3 className="font-bold text-sm tablet:text-base">{item?.title}</h3>
           <button

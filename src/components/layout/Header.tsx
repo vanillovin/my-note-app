@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import ThemeToggle from '../Theme/ThemeToggle';
 
 const Header = () => {
   const location = useLocation();
@@ -24,13 +25,14 @@ const Header = () => {
 
   return (
     <div
-      className={`text-xs tablet:text-base w-full h-14 tablet:h-20 flex flex-row items-center justify-between 
-                  px-5 tablet:px-10 bg-blue-100 select-none text-gray-600 font-bold`}
+      className={`text-xs tablet:text-base w-full h-14 tablet:h-20 flex flex-row items-center justify-between
+                  px-5 tablet:px-10 bg-blue-100 select-none text-gray-600 dark:text-stone-300 font-bold dark:bg-stone-700`}
     >
-      <div className="w-1/3">
-        <Link to="/">Logo</Link>
+      <div className="w-1/3 flex items-center">
+        <Link to="/">Home</Link>
+        <ThemeToggle />
       </div>
-      <div className="w-1/3 text-center flex items-center justify-center">
+      <div className="hidden tablet:flex w-1/3 text-center items-center justify-center">
         <p className="font-bold rounded-3xl border-2 border-white py-1 px-2 text:base tablet:text-xl">
           {clock}
         </p>
@@ -43,7 +45,8 @@ const Header = () => {
           <li
             key={title}
             className={`ml-2 tablet:ml-6 hover:opacity-70 ${
-              location.pathname.includes(path) && 'text-blue-400'
+              location.pathname.includes(path) &&
+              'text-blue-400 dark:text-white'
             }`}
           >
             <Link to={path}>{title}</Link>

@@ -12,6 +12,8 @@ import './index.css';
 import Router from './components/Router';
 import rootReducer from './modules/index';
 import Loading from './components/Loading';
+import { ThemeProvider } from './context/ThemeContext';
+import Layout from './components/layout/Layout';
 
 const persistConfig = {
   key: 'root',
@@ -26,7 +28,11 @@ const persistor = persistStore(store);
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={<Loading />} persistor={persistor}>
-      <Router />
+      <ThemeProvider initialTheme="light">
+        <Layout>
+          <Router />
+        </Layout>
+      </ThemeProvider>
     </PersistGate>
   </Provider>,
   document.getElementById('root')
