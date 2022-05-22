@@ -84,6 +84,8 @@ const Diary = () => {
       {isModalOpen && (
         <Modal>
           <CategoryForm
+            prevTitle=""
+            prevColor="#EEEEEE"
             onClick={handleAddCategory}
             handleCloseModal={handleCloseModal}
           />

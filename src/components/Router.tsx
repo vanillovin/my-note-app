@@ -5,6 +5,7 @@ import App from '../App';
 import Calendar from '../pages/Calendar';
 import Diary from '../pages/Diary';
 import DiaryDetail from '../pages/DiaryDetail';
+import DiaryItem from './Diary/DiaryItem';
 import Header from './layout/Header';
 
 const Router = () => {
@@ -14,8 +15,18 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/diary" element={<Diary />}></Route>
-        <Route path="/diary/*" element={<DiaryDetail />}></Route>
+        <Route path="/diary/:id" element={<DiaryDetail />}>
+          <Route path=":id" element={<DiaryItem />} />
+        </Route>
         <Route path="/calendar" element={<Calendar />} />
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: '1rem' }}>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

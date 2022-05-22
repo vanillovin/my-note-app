@@ -10,7 +10,15 @@ body {
 }
 
 @layer components {
-  .button-style {
+  .diary {
+    @apply cursor-pointer text-xs tablet:text-sm relative border-r-2 border-gray-200 w-14 h-20 tablet:w-28 tablet:h-36 
+    m-5 rounded-sm break-all text-center shadow-md hover:scale-105;
+  }
+  .diary-item {
+    @apply cursor-pointer p-2 bg-white bg-opacity-80 w-14 h-20 mr-3 mb-3 tablet:w-20 tablet:h-28 tablet:mr-5 tablet:mb-5 
+    flex items-center justify-center hover:bg-opacity-60 shadow-sm select-none flex flex-col;
+  }
+  .todo-button {
     @apply rounded-xl border border-white text-xs px-1 ml-1 hover:opacity-70;
   }
 }
