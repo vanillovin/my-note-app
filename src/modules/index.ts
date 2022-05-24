@@ -2,8 +2,9 @@
 import { combineReducers } from 'redux';
 import todos from './todos';
 import diary from './diary';
+import calendar from './calendar';
 
-const rootReducer = combineReducers({ todos, diary });
+const rootReducer = combineReducers({ todos, diary, calendar });
 
 export default rootReducer;
 

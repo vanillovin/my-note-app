@@ -40,7 +40,7 @@ const Header = () => {
       <ul className="flex items-center w-1/3 justify-end">
         {[
           ['/diary', 'Diary'],
-          ['/calender', 'Calender'],
+          ['/calendar', 'Calendar'],
         ].map(([path, title]) => (
           <li
             key={title}

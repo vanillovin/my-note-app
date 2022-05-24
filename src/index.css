@@ -21,4 +21,7 @@ body {
   .todo-button {
     @apply rounded-xl text-2xs tablet:text-xs px-1 ml-1 hover:opacity-70;
   }
+  .calendar-form_button {
+    @apply px-2 text-sm tablet:text-base rounded-full mr-1 hover:opacity-70;
+  }
 }

@@ -5,6 +5,7 @@ import App from '../App';
 import Calendar from '../pages/Calendar';
 import Diary from '../pages/Diary';
 import DiaryDetail from '../pages/DiaryDetail';
+import CalendarForm from './CalendarForm';
 import DiaryItem from './Diary/DiaryItem';
 import Header from './layout/Header';
 
@@ -18,7 +19,9 @@ const Router = () => {
         <Route path="/diary/:id" element={<DiaryDetail />}>
           <Route path=":id" element={<DiaryItem />} />
         </Route>
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/calendar" element={<Calendar />}>
+          <Route path="new" element={<CalendarForm />} />
+        </Route>
         <Route
           path="*"
           element={
