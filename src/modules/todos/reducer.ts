@@ -1,42 +1,5 @@
-export type Categories = 'todo' | 'doing' | 'done';
-
-// const actionPrefix = 'TODOS';
-const ADD_TODO = `todos/ADD_TODO` as const;
-const DELETE_TODO = 'todos/DELETE_TODO' as const;
-const CHANGE_CATEGORY = 'todos/CHANGE_CATEGORY' as const;
-
-export const addTodo = (text: string) => ({
-  type: ADD_TODO,
-  payload: {
-    id: Date.now(),
-    text,
-  },
-});
-export const deleteTodo = (id: number, category: Categories) => ({
-  type: DELETE_TODO,
-  payload: { id, category },
-});
-export const changeCategory = (
-  id: number,
-  curCat: Categories,
-  cat: Categories
-) => ({
-  type: CHANGE_CATEGORY,
-  payload: { id, curCat, cat },
-});
-
-// 모든 액션 객체들에 대한 타입
-type TodosAction =
-  | ReturnType<typeof addTodo>
-  | ReturnType<typeof deleteTodo>
-  | ReturnType<typeof changeCategory>;
-
-export type Todo = {
-  id: number;
-  text: string;
-};
-
-export type TodosState = { todo: Todo[]; doing: Todo[]; done: Todo[] };
+import { ADD_TODO, DELETE_TODO, CHANGE_CATEGORY } from './actions';
+import { TodosAction, TodosState } from './types';
 
 const initialState: TodosState = {
   todo: [{ id: 1, text: "Hello I'm TODO" }],
