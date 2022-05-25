@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Outlet, useNavigate } from 'react-router';
+import useCalendar from '../../hooks/service/useCalendar';
 import { RootState } from '../../modules';
 import Modal from '../modal';
 
@@ -13,7 +14,9 @@ const CalendarContainer = () => {
   const mon = date.getMonth() + 1;
 
   const location = useLocation();
-  const calendar = useSelector((state: RootState) => state.calendar);
+  const navigate = useNavigate();
+
+  const { calendar } = useCalendar();
 
   const schdulePath = location.pathname.includes('new');
 
@@ -26,8 +29,6 @@ const CalendarContainer = () => {
     if (month === 11) return;
     setMonth((prev) => prev + 1);
   };
-
-  const navigate = useNavigate();
 
   const handleOnClickSchedule = (day: number) => {
     navigate('/calendar/new', {
@@ -91,13 +92,13 @@ const CalendarContainer = () => {
                    }
                   ${
                     calendar[month][year][+day] &&
-                    'bg-amber-200 dark:bg-white dark:bg-opacity-20 tablet:bg-transparent'
+                    'bg-amber-200 dark:bg-white dark:bg-opacity-20 tablet:bg-transparent dark:tablet:bg-transparent'
                   }
                 `}
               >
                 {day}
               </div>
-              <div className="hidden tablet:block text-xs tablet:text-sm break-words">
+              <div className="hidden tablet:block text-xs tablet:text-sm break-words dark:text-blue-100">
                 {calendar[month][year][+day]}
               </div>
             </div>

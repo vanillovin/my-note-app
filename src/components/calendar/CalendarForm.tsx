@@ -1,7 +1,6 @@
-import React, { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { addSchedule, deleteSchedule } from '../../modules/calendar';
+import useCalendar from '../../hooks/service/useCalendar';
 
 type LocationState = {
   year: string;
@@ -14,6 +13,8 @@ const CalendarForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { onAddSchedule, onDeleteSchedule } = useCalendar();
+
   const { year, month, day, text } = location.state as LocationState;
 
   const [edit, setEdit] = useState(false);
@@ -24,13 +25,6 @@ const CalendarForm = () => {
     setNewText(e.target.value);
   };
 
-  const dispatch = useDispatch();
-
-  const onAddSchedule = useCallback(
-    (day: number, text: string) => dispatch(addSchedule(day, text)),
-    [dispatch]
-  );
-
   const handleAddSchedule = () => {
     if (newText.trim().length < 1) return;
     if (newText.length > 20) {
@@ -40,11 +34,6 @@ const CalendarForm = () => {
     onAddSchedule(+day, newText);
     setEdit(false);
   };
-
-  const onDeleteSchedule = useCallback(
-    (day: number) => dispatch(deleteSchedule(day)),
-    [dispatch]
-  );
 
   const handleDeleteSchedule = () => {
     if (!window.confirm('스케줄을 삭제하시겠습니까?')) return;
