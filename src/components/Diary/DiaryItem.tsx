@@ -1,24 +1,23 @@
-import React, { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate, useParams, useLocation } from 'react-router';
+import useDiary from '../../hooks/service/useDiary';
+import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
-import { deleteItem, editItem } from '../../modules/diary';
 import { DiaryItemParams, LocationState } from '../../pages/DiaryDetail';
 import Modal from '../modal';
 import ItemForm from './ItemForm';
 
 const DiaryItem = () => {
-  console.log('DiaryItem');
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
-
   const { id } = useParams<keyof DiaryItemParams>() as DiaryItemParams;
+  const { isShowing, openModal, closeModal } = useModal();
+  const { onDeleteItem, onEditItem } = useDiary();
+
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as LocationState;
 
+  //
   const categoryId = location.pathname.split('/')[2] || state.id;
   const itemId = location.pathname.split('/')[3];
 
@@ -29,27 +28,14 @@ const DiaryItem = () => {
   );
   const item = items?.find((item) => item.id === +id);
 
-  const dispatch = useDispatch();
-
-  const onDeleteItem = useCallback(
-    (catId: number, itemId: number) => dispatch(deleteItem(catId, itemId)),
-    [dispatch]
-  );
-
   const handleDeleteItem = () => {
     if (!window.confirm(`${item?.title}을(를) 삭제하시겠습니까?`)) return;
     onDeleteItem(+categoryId, +itemId);
   };
 
-  const onEditItem = useCallback(
-    (catId: number, itemId: number, title: string, content: string) =>
-      dispatch(editItem(catId, itemId, title, content)),
-    [dispatch]
-  );
-
   const handleEditItem = (title: string, content: string) => {
     onEditItem(+categoryId, +itemId, title, content);
-    handleCloseModal();
+    closeModal();
   };
 
   return (
@@ -71,10 +57,7 @@ const DiaryItem = () => {
           <h4 className="text-xs">{item?.createDate}</h4>
           <div className="flex items-center select-none group">
             <div className="hidden group-hover:block">
-              <button
-                className="ml-1 hover:font-bold"
-                onClick={handleOpenModal}
-              >
+              <button className="ml-1 hover:font-bold" onClick={openModal}>
                 수정
               </button>
               <button
@@ -89,13 +72,13 @@ const DiaryItem = () => {
         </div>
       </div>
 
-      {isModalOpen && (
+      {isShowing && (
         <Modal>
           <ItemForm
             prevTitle={item?.title as string}
             prevContent={item?.content as string}
             onClick={handleEditItem}
-            handleCloseModal={handleCloseModal}
+            handleCloseModal={closeModal}
           />
         </Modal>
       )}

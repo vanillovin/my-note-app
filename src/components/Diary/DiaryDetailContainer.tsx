@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router';
+import useDiary from '../../hooks/service/useDiary';
 import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
 import { addItem, deleteCategory, editCategory } from '../../modules/diary';
@@ -41,24 +42,13 @@ const DiaryDetailContainer = () => {
     closeModal: closeEditModal,
   } = useModal();
 
-  const dispatch = useDispatch();
-
-  const onDeleteCategory = useCallback(
-    (id) => dispatch(deleteCategory(id)),
-    [dispatch]
-  );
+  const { onAddItem, onDeleteCategory, onEditCategory } = useDiary();
 
   const handleDeleteCategory = () => {
     if (!window.confirm(`${diary?.title}을(를) 삭제하시겠습니까?`)) return;
     onDeleteCategory(+categoryId);
     navigate('/diary');
   };
-
-  const onEditCategory = useCallback(
-    (id: number, title: string, color: string) =>
-      dispatch(editCategory(id, title, color)),
-    [dispatch]
-  );
 
   const handleEditCategory = (title: string, color: string) => {
     onEditCategory(+categoryId, title, color);
@@ -67,12 +57,6 @@ const DiaryDetailContainer = () => {
   const handleOnClickItem = (id: number) => {
     navigate(`/diary/${categoryId}/${id}`, { state: { id: categoryId } });
   };
-
-  const onAddItem = useCallback(
-    (id: number, title: string, content: string) =>
-      dispatch(addItem(id, title, content)),
-    [dispatch]
-  );
 
   const handleAddItem = (title: string, content: string) => {
     onAddItem(+categoryId, title, content);

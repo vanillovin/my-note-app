@@ -1,9 +1,7 @@
-import React, { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router';
+import useDiary from '../../hooks/service/useDiary';
 import useModal from '../../hooks/useModal';
-import { RootState } from '../../modules';
-import { addCategory } from '../../modules/diary';
 
 import Modal from '../modal';
 import CategoryForm from './CategoryForm';
@@ -30,17 +28,10 @@ const DiaryContainer = () => {
 
   const { isShowing, openModal, closeModal } = useModal();
 
-  const categories = useSelector((state: RootState) => state.diary);
-
-  const dispatch = useDispatch();
-
-  const onAddCategory = useCallback(
-    (title, color) => dispatch(addCategory(title, color)),
-    [dispatch]
-  );
+  const { categories, onAddCategory } = useDiary();
 
   const handleOnClickCard = useCallback(
-    (id: number, title: string) => {
+    (id: number) => {
       navigate(`/diary/${id}`, { state: { id } });
     },
     [navigate]
@@ -62,7 +53,7 @@ const DiaryContainer = () => {
             }}
           >
             <div
-              onClick={() => handleOnClickCard(id, title)}
+              onClick={() => handleOnClickCard(id)}
               className="z-10 absolute w-full h-full leading-3 tablet:leading-5 p-1 tablet:p-3 
                         top-0 left-0 flex items-center justify-center"
             >
