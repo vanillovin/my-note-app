@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
 import { addCategory } from '../../modules/diary';
 
@@ -27,7 +28,7 @@ export const COLORS = {
 const DiaryContainer = () => {
   let navigate = useNavigate();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isShowing, openModal, closeModal } = useModal();
 
   const categories = useSelector((state: RootState) => state.diary);
 
@@ -44,9 +45,6 @@ const DiaryContainer = () => {
     },
     [navigate]
   );
-
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
 
   const handleAddCategory = (title: string, color: string) => {
     onAddCategory(title, color);
@@ -74,7 +72,7 @@ const DiaryContainer = () => {
         ))}
         <div className="diary bg-white">
           <div
-            onClick={handleOpenModal}
+            onClick={openModal}
             className="absolute w-full h-full leading-3 tablet:leading-5 p-1 tablet:p-3 top-0 left-0 flex items-center justify-center"
           >
             +
@@ -82,13 +80,13 @@ const DiaryContainer = () => {
         </div>
       </div>
 
-      {isModalOpen && (
+      {isShowing && (
         <Modal>
           <CategoryForm
             prevTitle=""
             prevColor="#EEEEEE"
             onClick={handleAddCategory}
-            handleCloseModal={handleCloseModal}
+            handleCloseModal={closeModal}
           />
         </Modal>
       )}

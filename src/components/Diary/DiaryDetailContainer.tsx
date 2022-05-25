@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router';
+import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
 import { addItem, deleteCategory, editCategory } from '../../modules/diary';
 import Modal from '../modal';
@@ -33,16 +34,12 @@ const DiaryDetailContainer = () => {
   );
   const item = diary?.items.find((item) => item.id === +itemId);
 
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isCreateModalItem, setIsCreateModalOpen] = useState(false);
-  const handleOpenModal = (name: 'editCat' | 'createItem') => {
-    name === 'editCat' ? setIsEditModalOpen(true) : setIsCreateModalOpen(true);
-  };
-  const handleCloseModal = (name: 'editCat' | 'createItem') => {
-    name === 'editCat'
-      ? setIsEditModalOpen(false)
-      : setIsCreateModalOpen(false);
-  };
+  const { isShowing, openModal, closeModal } = useModal();
+  const {
+    isShowing: isEditShowing,
+    openModal: openEditModal,
+    closeModal: closeEditModal,
+  } = useModal();
 
   const dispatch = useDispatch();
 
@@ -104,7 +101,7 @@ const DiaryDetailContainer = () => {
           <div className="text-xs tablet:text-sm select-none">
             <button
               className="rounded-xl tablet:rounded-full px-2 tablet:py-1 tablet:px-3 bg-blue-300 hover:bg-opacity-70"
-              onClick={() => handleOpenModal('editCat')}
+              onClick={openEditModal}
             >
               수정
             </button>
@@ -137,11 +134,7 @@ const DiaryDetailContainer = () => {
                 </h4>
               </li>
             ))}
-            <li
-              key={id}
-              onClick={() => handleOpenModal('createItem')}
-              className="diary-item"
-            >
+            <li key={id} onClick={openModal} className="diary-item">
               <h3 className="text-xs tablet:text-sm text-center leading-3 tablet:leading-4">
                 +
               </h3>
@@ -152,23 +145,23 @@ const DiaryDetailContainer = () => {
         </div>
       </div>
 
-      {isEditModalOpen && (
+      {isEditShowing && (
         <Modal>
           <CategoryForm
             prevTitle={diary?.title as string}
             prevColor={diary?.color as string}
             onClick={handleEditCategory}
-            handleCloseModal={() => handleCloseModal('editCat')}
+            handleCloseModal={closeEditModal}
           />
         </Modal>
       )}
-      {isCreateModalItem && (
+      {isShowing && (
         <Modal>
           <ItemForm
             prevTitle=""
             prevContent=""
             onClick={handleAddItem}
-            handleCloseModal={() => handleCloseModal('createItem')}
+            handleCloseModal={closeModal}
           />
         </Modal>
       )}
