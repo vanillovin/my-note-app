@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
-import { addSchedule, deleteSchedule } from '../modules/calendar';
+import { addSchedule, deleteSchedule } from '../../modules/calendar';
 
 type LocationState = {
   year: string;

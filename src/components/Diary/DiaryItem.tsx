@@ -4,7 +4,7 @@ import { useNavigate, useParams, useLocation } from 'react-router';
 import { RootState } from '../../modules';
 import { deleteItem, editItem } from '../../modules/diary';
 import { DiaryItemParams, LocationState } from '../../pages/DiaryDetail';
-import Modal from '../Modal';
+import Modal from '../modal';
 import ItemForm from './ItemForm';
 
 const DiaryItem = () => {

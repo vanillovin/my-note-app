@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router';
-import CategoryForm from '../components/diary/CategoryForm';
-import ItemForm from '../components/diary/ItemForm';
-import Modal from '../components/modal';
-import { RootState } from '../modules';
-import { addItem, deleteCategory, editCategory } from '../modules/diary';
+import { RootState } from '../../modules';
+import { addItem, deleteCategory, editCategory } from '../../modules/diary';
+import Modal from '../modal';
+import CategoryForm from './CategoryForm';
+import ItemForm from './ItemForm';
 
 export type DiaryItemParams = {
   id: string;
@@ -15,7 +15,7 @@ export type LocationState = {
   id: number;
 };
 
-const DiaryDetail = () => {
+const DiaryDetailContainer = () => {
   console.log('DiaryDetail');
 
   const { id } = useParams<DiaryItemParams>();
@@ -176,4 +176,4 @@ const DiaryDetail = () => {
   );
 };
 
-export default DiaryDetail;
+export default DiaryDetailContainer;

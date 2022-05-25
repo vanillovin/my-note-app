@@ -5,8 +5,8 @@ import App from '../App';
 import Calendar from '../pages/Calendar';
 import Diary from '../pages/Diary';
 import DiaryDetail from '../pages/DiaryDetail';
-import CalendarForm from './CalendarForm';
-import DiaryItem from './Diary/DiaryItem';
+import CalendarForm from './calendar/CalendarForm';
+import DiaryItem from './diary/DiaryItem';
 import Header from './layout/Header';
 
 const Router = () => {
