@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { Categories, changeCategory, deleteTodo } from '../../modules/todos';
+import React from 'react';
+import useTodos from '../../hooks/service/useTodos';
+import { Categories } from '../../modules/todos';
 
 interface TodoProps {
   id: number;
@@ -9,17 +9,7 @@ interface TodoProps {
 }
 
 const Todo = ({ id, text, category }: TodoProps) => {
-  const dispatch = useDispatch();
-
-  const onDelete = useCallback(
-    (id, category) => dispatch(deleteTodo(id, category)),
-    [dispatch]
-  );
-
-  const onChangeCategory = useCallback(
-    (id, curCat, cat) => dispatch(changeCategory(id, curCat, cat)),
-    [dispatch]
-  );
+  const { onDelete, onChangeCategory } = useTodos();
 
   return (
     <li className="flex items-center my-1 flex-wrap group">
