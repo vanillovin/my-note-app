@@ -55,13 +55,13 @@ const CategoryForm = ({
       {error && (
         <p className="text-sm text-blue-600 ml-1 -mt-3 mb-4">{error}</p>
       )}
-      <div className="flex flex-wrap mb-8">
+      <div className="flex flex-wrap mb-4">
         {COLORS.categories.map((color) => (
           <div
             key={color}
             onClick={() => setDiaryColor(color)}
             className={`${
-              color !== '#EEEEEE' && 'mr-2'
+              color !== '#EEEEEE' && 'mr-2 mb-2'
             } w-10 h-10 rounded-full cursor-pointer`}
             style={{
               backgroundColor: color,
