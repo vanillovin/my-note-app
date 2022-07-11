@@ -52,6 +52,7 @@ function Weather() {
       className="mt-8 bg-white m-2 rounded-sm flex p-2 dark:bg-amber-400
                 dark:bg-opacity-40 dark:text-white select-none shadow-lg"
     >
+      <TodoProgress />
       <div className="flex items-center w-1/2 py-2 px-4 justify-center">
         <div>
           <p className="text-lg font-bold">
