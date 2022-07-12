@@ -1,4 +1,4 @@
-import { addSchedule, deleteSchedule } from './actions';
+import { createOrUpdateSchedule, deleteSchedule } from './actions';
 
 export type Calendar = {
   space: number;
@@ -11,5 +11,5 @@ export type Calendar = {
 export type CalendarState = Calendar[];
 
 export type CalendarAction =
-  | ReturnType<typeof addSchedule>
+  | ReturnType<typeof createOrUpdateSchedule>
   | ReturnType<typeof deleteSchedule>;

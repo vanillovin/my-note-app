@@ -1,4 +1,4 @@
-import { ADD_SCHEDULE, DELETE_SCHEDULE } from './actions';
+import { CREATE_OR_UPDATE_SCHEDULE, DELETE_SCHEDULE } from './actions';
 import { CalendarAction, CalendarState } from './types';
 import calendarState from './calendarState';
 
@@ -13,7 +13,7 @@ export default function calendar(
   action: CalendarAction
 ): CalendarState {
   switch (action.type) {
-    case ADD_SCHEDULE:
+    case CREATE_OR_UPDATE_SCHEDULE:
       return state.map((mon, i) =>
         i === month
           ? {

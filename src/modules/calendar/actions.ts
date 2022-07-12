@@ -1,8 +1,9 @@
-export const ADD_SCHEDULE = `calendar/ADD_SCHEDULE` as const;
+export const CREATE_OR_UPDATE_SCHEDULE =
+  `calendar/CREATE_OR_UPDATE_SCHEDULE` as const;
 export const DELETE_SCHEDULE = `calendar/DELETE_SCHEDULE` as const;
 
-export const addSchedule = (day: number, text: string) => ({
-  type: ADD_SCHEDULE,
+export const createOrUpdateSchedule = (day: number, text: string) => ({
+  type: CREATE_OR_UPDATE_SCHEDULE,
   payload: { day, text },
 });
 

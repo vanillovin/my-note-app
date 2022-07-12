@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import { addSchedule, deleteSchedule } from '../../modules/calendar';
+import { createOrUpdateSchedule, deleteSchedule } from '../../modules/calendar';
 
 const useCalendar = () => {
   const dispatch = useDispatch();
 
   const calendar = useSelector((state: RootState) => state.calendar);
 
-  const onAddSchedule = useCallback(
-    (day: number, text: string) => dispatch(addSchedule(day, text)),
+  const onCreateOrUpdateSchedule = useCallback(
+    (day: number, text: string) => dispatch(createOrUpdateSchedule(day, text)),
     [dispatch]
   );
 
@@ -20,7 +20,7 @@ const useCalendar = () => {
 
   return {
     calendar,
-    onAddSchedule,
+    onCreateOrUpdateSchedule,
     onDeleteSchedule,
   };
 };

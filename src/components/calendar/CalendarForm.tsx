@@ -12,7 +12,7 @@ type LocationState = {
 const CalendarForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { onAddSchedule, onDeleteSchedule } = useCalendar();
+  const { onCreateOrUpdateSchedule, onDeleteSchedule } = useCalendar();
   const { year, month, day, text } = location.state as LocationState;
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState('');
@@ -28,7 +28,7 @@ const CalendarForm = () => {
       setError('20자 이하로 입력해 주세요');
       return;
     } else setError('');
-    onAddSchedule(+day, newText);
+    onCreateOrUpdateSchedule(+day, newText);
     setEdit(false);
   };
 
