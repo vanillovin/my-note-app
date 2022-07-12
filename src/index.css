@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  @apply bg-blue-200 dark:bg-stone-900;
+  @apply bg-blue-200 dark:bg-black;
 }
 
 @layer components {
@@ -16,12 +16,26 @@ body {
   }
   .diary-item {
     @apply cursor-pointer p-2 bg-white bg-opacity-80 w-14 h-20 mr-3 mb-3 tablet:w-20 tablet:h-28 tablet:mr-5 tablet:mb-5 
-    items-center justify-center hover:bg-opacity-60 shadow-sm select-none flex flex-col;
+    items-center justify-center hover:bg-opacity-60 shadow-sm select-none flex flex-col 
+    dark:bg-opacity-10 dark:text-white;
   }
   .todo-button {
-    @apply rounded-xl text-2xs tablet:text-xs px-1 ml-1 hover:opacity-70;
+    @apply rounded-xl text-2xs tablet:text-xs px-1 ml-1 hover:opacity-70 dark:bg-opacity-80;
   }
   .calendar-form_button {
     @apply px-2 text-sm tablet:text-base rounded-full mr-1 hover:opacity-70;
+  }
+  .calendar-day {
+    @apply tablet:font-bold text-xs tablet:text-base w-5 h-5 tablet:w-auto tablet:h-auto 
+    rounded-full text-center tablet:text-left dark:text-stone-100;
+  }
+  .cal-day-red {
+    @apply text-red-400 dark:text-red-400;
+  }
+  .cal-day-blue {
+    @apply text-blue-400 dark:text-blue-400;
+  }
+  .cal-day-cir {
+    @apply bg-amber-200 dark:bg-white dark:bg-opacity-20 tablet:bg-transparent dark:tablet:bg-transparent;
   }
 }

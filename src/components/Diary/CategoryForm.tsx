@@ -46,7 +46,7 @@ const CategoryForm = ({
     <>
       <input
         ref={titleInputRef}
-        className="border border-gray-400 rounded-sm py-1 px-2 my-4"
+        className="border border-stone-400 rounded-sm py-1 px-2 my-4"
         placeholder="제목을 입력해 주세요"
         min="1"
         max="30"
@@ -73,12 +73,12 @@ const CategoryForm = ({
       <div className="flex justify-end text-sm">
         <button
           onClick={handleOnclick}
-          className="bg-gray-400 py-1 px-2 hover:opacity-70 ml-2 rounded-sm"
+          className="bg-stone-400 py-1 px-2 hover:opacity-70 ml-2 rounded-sm transition-all"
         >
           확인
         </button>
         <button
-          className="bg-gray-200 py-1 px-2 hover:opacity-70 ml-2 rounded-sm"
+          className="bg-stone-200 py-1 px-2 hover:opacity-70 ml-2 rounded-sm transition-all"
           onClick={handleCloseModal}
         >
           닫기

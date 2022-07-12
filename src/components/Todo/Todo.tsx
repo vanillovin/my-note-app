@@ -13,7 +13,9 @@ const Todo = ({ id, text, category }: TodoProps) => {
 
   return (
     <li className="flex items-center my-1 flex-wrap group">
-      <p className="mr-1 text-sm tablet:text-base">▪{text}</p>
+      <p className="mr-1 text-sm tablet:text-base text-stone-600 dark:text-stone-300">
+        ▪{text}
+      </p>
       <div className="tablet:hidden group-hover:block">
         {(category === 'doing' || category === 'done') && (
           <button

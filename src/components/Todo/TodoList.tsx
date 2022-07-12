@@ -10,15 +10,15 @@ const TodoList = () => {
   const categories: Categories[] = ['todo', 'doing', 'done'];
 
   return (
-    <div className="w-full mt-6">
+    <div className="w-full mt-2 tablet:mt-4">
       <TodoForm />
       <div className="flex flex-col tablet:flex-row">
         {categories.map((v) => (
           <div
             key={v}
-            className="tablet:w-1/3 bg-white border border-white m-2 p-3 rounded-sm shadow-md dark:bg-opacity-40"
+            className="tablet:w-1/3 bg-white border border-white m-2 p-3 rounded-sm shadow-lg dark:bg-black"
           >
-            <h2 className="text-sm tablet:text-base font-bold mb-2 pb-2 border-b border-gray-200">
+            <h2 className="text-sm tablet:text-base font-bold mb-2 pb-2 border-b border-gray-200 dark:text-white">
               {v.toUpperCase()}
             </h2>
             <ul>

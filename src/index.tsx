@@ -12,7 +12,7 @@ import './index.css';
 import Router from './components/Router';
 import rootReducer from './modules/index';
 import Loading from './components/Loading';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Layout from './components/layout/Layout';
 
 const persistConfig = {

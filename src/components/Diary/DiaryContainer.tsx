@@ -47,7 +47,7 @@ const DiaryContainer = () => {
         {categories.map(({ id, title, color }) => (
           <div
             key={id}
-            className={`diary group dark:opacity-80`}
+            className={`diary group dark:bg-opacity-80`}
             style={{
               backgroundColor: `${color}`,
             }}

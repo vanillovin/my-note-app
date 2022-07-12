@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from '../ThemeToggle';
+import { AiFillHome } from 'react-icons/ai';
 
 const Header = () => {
   const location = useLocation();
@@ -25,12 +26,13 @@ const Header = () => {
 
   return (
     <div
-      className={`text-xs tablet:text-base w-full h-14 tablet:h-20 flex flex-row items-center justify-between
-                  px-5 tablet:px-10 bg-blue-100 select-none text-gray-600 dark:text-stone-300 font-bold dark:bg-stone-700`}
+      className={`text-xs tablet:text-base w-full h-14 tablet:h-20 flex flex-row items-center justify-between dark:border-b
+                  px-5 tablet:px-10 bg-blue-100 select-none text-gray-600 dark:text-stone-100 font-bold dark:bg-transparent`}
     >
       <div className="w-1/3 flex items-center">
-        <Link to="/">Home</Link>
-        <ThemeToggle />
+        <Link to="/">
+          <AiFillHome size={25} className="w-5 tablet:w-auto" />
+        </Link>
       </div>
       <div className="hidden tablet:flex w-1/3 text-center items-center justify-center">
         <p className="font-bold rounded-3xl border-2 border-white py-1 px-2 text:base tablet:text-xl">
@@ -38,15 +40,16 @@ const Header = () => {
         </p>
       </div>
       <ul className="flex items-center w-1/3 justify-end">
+        <ThemeToggle />
         {[
           ['/diary', 'Diary'],
           ['/calendar', 'Calendar'],
         ].map(([path, title]) => (
           <li
             key={title}
-            className={`ml-2 tablet:ml-6 hover:opacity-70 ${
+            className={`p-1 tablet:mx-1 hover:opacity-70 ${
               location.pathname.includes(path) &&
-              'text-blue-400 dark:text-white'
+              'text-blue-400 dark:text-white dark:opacity-80'
             }`}
           >
             <Link to={path}>{title}</Link>

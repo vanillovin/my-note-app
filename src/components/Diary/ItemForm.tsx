@@ -52,28 +52,26 @@ const ItemForm = ({
     <div className="flex flex-col tablet:w-96">
       <input
         ref={titleInputRef}
-        // value={titleInputRef.current?.value}
-        className="border border-gray-400 rounded-sm py-1 px-2"
+        className="border outline-none border-stone-400 rounded-sm py-1 px-2"
         placeholder="제목을 입력하세요"
         required
       />
       {error && <p className="text-blue-600 mt-1 ml-1 text-sm">{error}</p>}
       <textarea
         ref={contentInputRef}
-        // value={contentInputRef.current?.value}
-        className="border border-gray-400 rounded-sm py-1 px-2 my-4 h-40"
+        className="border outline-none border-stone-400 rounded-sm py-1 px-2 my-4 h-40"
         placeholder="내용을 입력하세요"
         required
       />
       <div className="flex justify-end text-sm">
         <button
           onClick={handleOnclick}
-          className="bg-gray-400 py-1 px-2 hover:opacity-70 ml-2 rounded-sm"
+          className="bg-stone-400 py-1 px-2 hover:opacity-70 ml-2 rounded-sm transition-all"
         >
           확인
         </button>
         <button
-          className="bg-gray-200 py-1 px-2 hover:opacity-70 ml-2 rounded-sm"
+          className="bg-stone-200 py-1 px-2 hover:opacity-70 ml-2 rounded-sm transition-all"
           onClick={handleCloseModal}
         >
           닫기

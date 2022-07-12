@@ -4,8 +4,8 @@ import { useNavigate, useParams, useLocation } from 'react-router';
 import useDiary from '../../hooks/service/useDiary';
 import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
-import { DiaryItemParams, LocationState } from '../../pages/DiaryDetail';
 import Modal from '../modal';
+import { DiaryItemParams, LocationState } from './DiaryDetailContainer';
 import ItemForm from './ItemForm';
 
 const DiaryItem = () => {
@@ -40,8 +40,8 @@ const DiaryItem = () => {
 
   return (
     <div className="w-full tablet:w-3/5">
-      <div className="bg-white p-4 tablet:p-6 dark:bg-opacity-80">
-        <div className="w-full flex flex-wrap items-center justify-between border-b border-black pb-3">
+      <div className="bg-white p-4 tablet:p-6 dark:bg-opacity-20 dark:text-white">
+        <div className="w-full flex flex-wrap items-center justify-between border-b border-black pb-3 dark:border-white">
           <h3 className="font-bold text-sm tablet:text-base">{item?.title}</h3>
           <button
             className="text-xs tablet:text-sm hover:font-bold select-none"
@@ -50,7 +50,7 @@ const DiaryItem = () => {
             닫기
           </button>
         </div>
-        <p className="text-sm tablet:text-base my-6 whitespace-pre-line text-gray-800">
+        <p className="text-sm tablet:text-base my-6 whitespace-pre-line text-stone-800 dark:text-stone-200">
           {item?.content}
         </p>
         <div className="flex items-center justify-between text-xs tablet:text-sm">

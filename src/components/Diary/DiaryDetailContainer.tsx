@@ -1,10 +1,9 @@
-import React, { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router';
 import useDiary from '../../hooks/service/useDiary';
 import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
-import { addItem, deleteCategory, editCategory } from '../../modules/diary';
 import Modal from '../modal';
 import CategoryForm from './CategoryForm';
 import ItemForm from './ItemForm';
@@ -18,8 +17,6 @@ export type LocationState = {
 };
 
 const DiaryDetailContainer = () => {
-  console.log('DiaryDetail');
-
   const { id } = useParams<DiaryItemParams>();
 
   const navigate = useNavigate();
@@ -67,7 +64,7 @@ const DiaryDetailContainer = () => {
       <div className="m-10">
         <div
           className="flex flex-wrap items-center justify-between border-b-2 border-white 
-                      dark:border-stone-300 pb-3 mb-3 tablet:pb-5 tablet:mb-5"
+                    dark:border-stone-300  pb-3 mb-3 tablet:pb-5 tablet:mb-5"
         >
           <div className="flex flex-wrap items-end dark:text-stone-300">
             <h2 className="text-sm tablet:text-lg font-bold mr-1">
@@ -84,14 +81,16 @@ const DiaryDetailContainer = () => {
           </div>
           <div className="text-xs tablet:text-sm select-none">
             <button
-              className="rounded-xl tablet:rounded-full px-2 tablet:py-1 tablet:px-3 bg-blue-300 hover:bg-opacity-70"
               onClick={openEditModal}
+              className="rounded-xl tablet:rounded-full px-2 tablet:py-1 tablet:px-3 transition-all
+              bg-blue-300 hover:opacity-70 dark:bg-opacity-80 dark:hover:opacity-60"
             >
               수정
             </button>
             <button
-              className="rounded-xl tablet:rounded-full ml-1 tablet:ml-2 px-2 tablet:py-1 tablet:px-3 bg-blue-100 hover:bg-opacity-70"
               onClick={handleDeleteCategory}
+              className="rounded-xl tablet:rounded-full ml-1 tablet:ml-2 px-2 tablet:py-1 transition-all
+              tablet:px-3 bg-blue-100 hover:opacity-70 dark:bg-opacity-80 dark:hover:opacity-60"
             >
               삭제
             </button>

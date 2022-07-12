@@ -12,11 +12,8 @@ type LocationState = {
 const CalendarForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
   const { onAddSchedule, onDeleteSchedule } = useCalendar();
-
   const { year, month, day, text } = location.state as LocationState;
-
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState('');
   const [newText, setNewText] = useState(text);
@@ -41,6 +38,11 @@ const CalendarForm = () => {
     setNewText('');
   };
 
+  const handleCancelSchedule = () => {
+    setNewText('');
+    setEdit(false);
+  };
+
   return (
     <div className="flex flex-col tablet:w-80">
       <h1 className="font-bold text-lg border-b pb-1 dark:text-white">
@@ -55,14 +57,14 @@ const CalendarForm = () => {
           <div className="flex items-center">
             <button
               onClick={() => setEdit(true)}
-              className="calendar-form_button bg-rose-100"
+              className="calendar-form_button bg-red-100"
             >
               {newText === '' ? '추가' : '수정'}
             </button>
             {newText && (
               <button
                 onClick={handleDeleteSchedule}
-                className="calendar-form_button bg-rose-300"
+                className="calendar-form_button bg-red-300"
               >
                 삭제
               </button>
@@ -84,7 +86,9 @@ const CalendarForm = () => {
             placeholder="스케줄을 입력해 주세요"
             required
           />
-          {error && <p className="text-sm text-blue-600 ml-1">{error}</p>}
+          {error && (
+            <p className="text-sm text-blue-600 ml-1 -mt-2 mb-1">{error}</p>
+          )}
           <div className="flex items-center">
             <button
               className="bg-stone-400 calendar-form_button"
@@ -94,7 +98,7 @@ const CalendarForm = () => {
             </button>
             <button
               className="bg-stone-200 calendar-form_button"
-              onClick={() => setEdit(false)}
+              onClick={handleCancelSchedule}
             >
               취소
             </button>

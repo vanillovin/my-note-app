@@ -8,13 +8,12 @@ function TodoProgress() {
           (todos.todo.length + todos.done.length + todos.doing.length)) *
         100
       : 0;
-  console.log(completedPercentage);
 
   return (
-    <div className="py-2 px-6 border-r w-1/2 flex flex-col justify-center">
+    <div className="py-2 pr-1 tablet:px-6 border-r w-1/2 flex flex-col justify-center">
       <div className="flex justify-between px-1 pb-1">
-        <p>Goals</p>
-        <p>
+        <p className="text-xs tablet:text-base">Goals</p>
+        <p className="text-xs tablet:text-base">
           {completedPercentage < 100
             ? completedPercentage.toFixed(1)
             : completedPercentage}
@@ -22,7 +21,7 @@ function TodoProgress() {
         </p>
       </div>
       <div
-        className="relative w-full h-8 rounded-full bg-amber-200 dark:bg-white
+        className="relative w-full h-5 tablet:h-8 rounded-full bg-amber-200 dark:bg-white
                   bg-opacity-40 dark:bg-opacity-40"
       >
         <div
