@@ -56,7 +56,8 @@ function Weather() {
       <div className="flex items-center w-1/2 py-2 px-1 tablet:px-4 justify-center">
         <div>
           <p className="text-sm tablet:text-lg font-bold">
-            {weatherData?.name}, {weatherData?.sys.country}
+            {weatherData?.name !== '' && `${weatherData?.name},`}{' '}
+            {weatherData?.sys.country}
           </p>
           <p className="text-sm tablet:text-lg font-bold">{`${weatherData?.main?.temp.toFixed()}℃`}</p>
           <p className="text-xs tablet:text-sm opacity-60">

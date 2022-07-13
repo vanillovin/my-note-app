@@ -331,7 +331,6 @@ const calendarState: Calendar[] = [
   },
   {
     space: 6,
-
     holidyas: [2, 3, 9, 10, 16, 23, 30],
     2022: {
       1: '',

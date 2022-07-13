@@ -72,7 +72,7 @@ const CalendarContainer = () => {
                 mon === month + 1 &&
                 +date.getDate() === +day &&
                 'bg-stone-100 dark:bg-transparent dark:border dark:border-stone-600'
-              } h-10 tablet:h-24 py-1 tablet:py-2 tablet:px-2 cursor-pointer hover:bg-stone-100 dark:hover:bg-white dark:hover:bg-opacity-5`}
+              } h-10 tablet:h-24 py-1 tablet:py-2 tablet:px-3 cursor-pointer hover:bg-stone-100 dark:hover:bg-white dark:hover:bg-opacity-5`}
               onClick={() => handleOnClickSchedule(+day)}
             >
               <div

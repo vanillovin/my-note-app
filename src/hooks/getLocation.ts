@@ -9,7 +9,6 @@ export function getLocation(): Promise<{
       const now = new Date();
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log('getLocation position', position);
           resolve({
             err: 0,
             time: now.toLocaleTimeString(),
@@ -18,7 +17,6 @@ export function getLocation(): Promise<{
           });
         },
         (err) => {
-          console.log('getLocation err', err);
           resolve({
             err: -1,
             latitude: -1,

@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { ReactChildrenProps } from '../types';
 
 type Theme = 'dark' | 'light';
 type State = {
@@ -25,8 +24,9 @@ const getInitialTheme = (): Theme => {
 
 export const ThemeContext = createContext<State>({} as State);
 
-interface ThemeProviderProps extends ReactChildrenProps {
+interface ThemeProviderProps {
   initialTheme: any;
+  children: React.ReactNode;
 }
 
 export const ThemeProvider = ({

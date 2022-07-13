@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -22,7 +21,7 @@ const persistConfig = {
 
 const persisted = persistReducer(persistConfig, rootReducer);
 
-const store = createStore(persisted, composeWithDevTools());
+const store = createStore(persisted);
 const persistor = persistStore(store);
 
 ReactDOM.render(
