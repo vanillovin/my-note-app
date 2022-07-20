@@ -13,13 +13,14 @@ const initialState: DiaryState = [
     id: 1,
     title: '첫 번째 다요리',
     color: '#F38181',
-    createDate: '2022. 5. 01. 오후 1:23:45',
+    createDate: 1657119600000,
+    updateDate: 1657119600000,
     items: [
       {
         id: 11,
         title: 'first item',
         content: '안녕하세요구르트 :>',
-        createDate: '2022. 5. 21. 오후 0:00:00',
+        createDate: 1657119600000,
       },
     ],
   },
@@ -49,6 +50,7 @@ export default function diary(
         cat.id === action.payload.id
           ? {
               ...cat,
+              updateDate: new Date().getTime(),
               items: [action.payload.item, ...cat.items],
             }
           : cat

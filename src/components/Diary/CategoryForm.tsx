@@ -32,9 +32,9 @@ const CategoryForm = ({
     }
     if (
       titleInputRef.current?.value &&
-      titleInputRef.current?.value.length > 30
+      titleInputRef.current?.value.length > 20
     ) {
-      setError('제목은 30자 이하로 입력해 주세요');
+      setError('제목은 20자 이하로 입력해 주세요');
       return;
     } else setError(null);
     onClick(titleInputRef.current?.value as string, diaryColor);
@@ -49,7 +49,7 @@ const CategoryForm = ({
         className="border border-stone-400 rounded-sm py-1 px-2 my-4"
         placeholder="제목을 입력해 주세요"
         min="1"
-        max="30"
+        max="20"
         required
       />
       {error && (

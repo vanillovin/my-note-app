@@ -6,6 +6,7 @@ import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
 import Modal from '../modal';
 import CategoryForm from './CategoryForm';
+import { getDateString } from './DiaryContainer';
 import ItemForm from './ItemForm';
 
 export type DiaryItemParams = {
@@ -71,12 +72,7 @@ const DiaryDetailContainer = () => {
               {diary?.title}
             </h2>
             <h3 className="text-xs tablet:text-sm">
-              (
-              {diary?.createDate.substring(
-                0,
-                diary?.createDate.lastIndexOf('.')
-              )}
-              )
+              생성일: {getDateString('localeDate', diary?.createDate as number)}
             </h3>
           </div>
           <div className="text-xs tablet:text-sm select-none">
@@ -113,7 +109,7 @@ const DiaryDetailContainer = () => {
                   {title.length > 10 ? `${title.substring(0, 10)}..` : title}
                 </h3>
                 <h4 className="hidden tablet:block text-xs tracking-tighter">
-                  {createDate.substring(0, createDate.lastIndexOf('.'))}
+                  {getDateString('localeDate', createDate)}
                 </h4>
               </li>
             ))}

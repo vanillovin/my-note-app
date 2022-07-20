@@ -11,14 +11,15 @@ export type Items = {
   id: number | string;
   title: string;
   content: string;
-  createDate: string;
+  createDate: number;
 };
 
 export type Categories = {
   id: number;
   title: string;
   color: string;
-  createDate: string;
+  createDate: number;
+  updateDate: number;
   items: Items[];
 };
 

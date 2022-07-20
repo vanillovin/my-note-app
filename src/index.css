@@ -11,8 +11,9 @@ body {
 
 @layer components {
   .diary {
-    @apply cursor-pointer text-xs tablet:text-sm relative border-r-2 border-gray-200 w-14 h-20 tablet:w-28 tablet:h-36 
-    m-5 rounded-sm break-all text-center shadow-md hover:scale-105;
+    @apply cursor-pointer relative border-r-2 border-gray-200 w-24 h-32 
+    tablet:w-40 tablet:h-52 m-5 break-all text-center shadow-md hover:scale-105 
+    rounded-l-sm rounded-r-lg;
   }
   .diary-item {
     @apply cursor-pointer p-2 bg-white bg-opacity-80 w-14 h-20 mr-3 mb-3 tablet:w-20 tablet:h-28 tablet:mr-5 tablet:mb-5 

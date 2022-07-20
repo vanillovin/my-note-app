@@ -11,7 +11,8 @@ export const addCategory = (title: string, color: string) => ({
     id: Date.now(),
     title,
     color,
-    createDate: new Date().toLocaleString(),
+    createDate: new Date().getTime(),
+    updateDate: new Date().getTime(),
     items: [],
   },
 });
@@ -31,7 +32,7 @@ export const addItem = (id: number, title: string, content: string) => ({
       id: Date.now(),
       title,
       content,
-      createDate: new Date().toLocaleString(),
+      createDate: new Date().getTime(),
     },
   },
 });

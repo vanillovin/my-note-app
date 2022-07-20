@@ -5,6 +5,7 @@ import useDiary from '../../hooks/service/useDiary';
 import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
 import Modal from '../modal';
+import { getDateString } from './DiaryContainer';
 import { DiaryItemParams, LocationState } from './DiaryDetailContainer';
 import ItemForm from './ItemForm';
 
@@ -54,7 +55,9 @@ const DiaryItem = () => {
           {item?.content}
         </p>
         <div className="flex items-center justify-between text-xs tablet:text-sm">
-          <h4 className="text-xs">{item?.createDate}</h4>
+          <h4 className="text-xs">
+            {getDateString('locale', item?.createDate as number)}
+          </h4>
           <div className="flex items-center select-none group">
             <div className="hidden group-hover:block">
               <button className="ml-1 hover:font-bold" onClick={openModal}>
