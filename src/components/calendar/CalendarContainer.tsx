@@ -29,7 +29,7 @@ const CalendarContainer = () => {
     navigate('/calendar/new', {
       state: {
         year,
-        month,
+        mon,
         day,
         text: calendar[month][year][day],
       },

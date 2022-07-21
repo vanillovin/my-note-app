@@ -4,7 +4,7 @@ import useCalendar from '../../hooks/service/useCalendar';
 
 type LocationState = {
   year: string;
-  month: string;
+  mon: string;
   day: string;
   text: string;
 };
@@ -13,7 +13,7 @@ const CalendarForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { onCreateOrUpdateSchedule, onDeleteSchedule } = useCalendar();
-  const { year, month, day, text } = location.state as LocationState;
+  const { year, mon, day, text } = location.state as LocationState;
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState('');
   const [newText, setNewText] = useState(text);
@@ -46,7 +46,7 @@ const CalendarForm = () => {
   return (
     <div className="flex flex-col tablet:w-80">
       <h1 className="font-bold text-lg border-b pb-1 dark:text-white">
-        {year}.{month}.{day}
+        {year}.{mon}.{day}
       </h1>
 
       {!edit ? (
