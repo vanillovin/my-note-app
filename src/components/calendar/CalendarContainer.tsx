@@ -55,7 +55,8 @@ const CalendarContainer = () => {
           {days.map((v) => (
             <div
               key={v}
-              className="py-1 tablet:py-2 px-1 tablet:px-2 font-semibold dark:text-white"
+              className={`py-1 tablet:py-2 px-1 tablet:px-2 font-semibold dark:text-white border-b border-red-300
+              ${v !== '토' && 'border-r'} dark:border-none`}
             >
               {v}
             </div>
@@ -63,7 +64,7 @@ const CalendarContainer = () => {
         </div>
         <div className="bg-white dark:bg-transparent grid grid-cols-7 grid-rows-5 rounded-bl-sm rounded-br-sm">
           {new Array(calendar[month].space).fill('').map((_, i) => (
-            <div key={i}></div>
+            <div key={i} className="border-b border-r dark:border-none"></div>
           ))}
           {Object.keys(calendar[month][year]).map((day) => (
             <div
@@ -71,8 +72,11 @@ const CalendarContainer = () => {
               className={`${
                 mon === month + 1 &&
                 +date.getDate() === +day &&
-                'bg-stone-100 dark:bg-transparent dark:border dark:border-stone-600'
-              } h-10 tablet:h-24 py-1 tablet:py-2 tablet:px-3 cursor-pointer hover:bg-stone-100 dark:hover:bg-white dark:hover:bg-opacity-5`}
+                'bg-stone-100 dark:bg-white dark:bg-opacity-5'
+              } h-10 tablet:h-24 py-1 tablet:py-2 tablet:px-3 cursor-pointer hover:bg-stone-100 dark:hover:bg-white dark:hover:bg-opacity-5
+              border-b dark:border-none ${
+                (+day + calendar[month].space) % 7 !== 0 && 'border-r'
+              }`}
               onClick={() => handleOnClickSchedule(+day)}
             >
               <div

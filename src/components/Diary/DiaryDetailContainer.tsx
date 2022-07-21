@@ -105,8 +105,8 @@ const DiaryDetailContainer = () => {
                 onClick={() => handleOnClickItem(+id)}
                 className="diary-item"
               >
-                <h3 className="text-xs tablet:text-sm text-center leading-3 tablet:leading-4 h-2/3 flex items-center">
-                  {title.length > 10 ? `${title.substring(0, 10)}..` : title}
+                <h3 className="text-xs tablet:text-sm text-center leading-3 tablet:leading-4 h-2/3 flex items-center break-all">
+                  {title.length > 12 ? `${title.substring(0, 12)}..` : title}
                 </h3>
                 <h4 className="hidden tablet:block text-xs tracking-tighter">
                   {getDateString('localeDate', createDate)}
