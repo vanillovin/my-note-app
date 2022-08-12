@@ -1,33 +1,29 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams, useLocation } from 'react-router';
 import useDiary from '../../hooks/service/useDiary';
 import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
+import { getDateString } from '../../utils/utils';
 import Modal from '../modal';
-import { getDateString } from './DiaryContainer';
 import { DiaryItemParams, LocationState } from './DiaryDetailContainer';
 import ItemForm from './ItemForm';
 
 const DiaryItem = () => {
-  const { id } = useParams<keyof DiaryItemParams>() as DiaryItemParams;
+  const { id: itemId } = useParams<keyof DiaryItemParams>() as DiaryItemParams;
   const { isShowing, openModal, closeModal } = useModal();
   const { onDeleteItem, onEditItem } = useDiary();
-
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as LocationState;
-
-  //
   const categoryId = location.pathname.split('/')[2] || state.id;
-  const itemId = location.pathname.split('/')[3];
 
   const items = useSelector(
     (state: RootState) =>
       state.diary.find((cat) => cat.id === +location.pathname.split('/')[2])
         ?.items
   );
-  const item = items?.find((item) => item.id === +id);
+
+  const item = items?.find((item) => item.id === +itemId);
 
   const handleDeleteItem = () => {
     if (!window.confirm(`${item?.title}을(를) 삭제하시겠습니까?`)) return;

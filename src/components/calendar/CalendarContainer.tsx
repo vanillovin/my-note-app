@@ -2,19 +2,15 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router';
 import { Outlet, useNavigate } from 'react-router';
 import useCalendar from '../../hooks/service/useCalendar';
+import { days, getDateData } from '../../utils/utils';
 import Modal from '../modal';
 
-const days = ['일', '월', '화', '수', '목', '금', '토'];
-
 const CalendarContainer = () => {
-  const date = new Date();
-  const year = date.getFullYear();
-  const mon = date.getMonth() + 1;
+  const { date, year, mon } = getDateData();
   const location = useLocation();
   const navigate = useNavigate();
   const { calendar } = useCalendar();
-  const schdulePath = location.pathname.includes('new');
-
+  const schdulePath = location.pathname.includes('/new');
   const [month, setMonth] = useState(mon - 1);
   const getPrevMonth = () => {
     if (month === 0) return;
@@ -24,7 +20,6 @@ const CalendarContainer = () => {
     if (month === 11) return;
     setMonth((prev) => prev + 1);
   };
-
   const handleOnClickSchedule = (day: number) => {
     navigate('/calendar/new', {
       state: {
@@ -72,9 +67,9 @@ const CalendarContainer = () => {
               className={`${
                 mon === month + 1 &&
                 +date.getDate() === +day &&
-                'bg-stone-100 dark:bg-white dark:bg-opacity-5'
-              } h-10 tablet:h-24 py-1 tablet:py-2 tablet:px-3 cursor-pointer hover:bg-stone-100 dark:hover:bg-white dark:hover:bg-opacity-5
-              border-b dark:border-none ${
+                'bg-stone-100 dark:bg-white dark:bg-opacity-10'
+              } h-10 tablet:h-24 py-1 tablet:py-2 tablet:px-3 cursor-pointer hover:bg-stone-100 dark:hover:bg-white 
+              dark:hover:bg-opacity-5 border-b dark:border-none ${
                 (+day + calendar[month].space) % 7 !== 0 && 'border-r'
               }`}
               onClick={() => handleOnClickSchedule(+day)}

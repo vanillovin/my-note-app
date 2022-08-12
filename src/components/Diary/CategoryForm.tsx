@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { COLORS } from './DiaryContainer';
+import { useEffect, useRef, useState } from 'react';
+import { COLORS } from '../../utils/utils';
 
 interface CategoryFormProps {
   prevTitle: string;

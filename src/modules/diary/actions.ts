@@ -16,14 +16,17 @@ export const addCategory = (title: string, color: string) => ({
     items: [],
   },
 });
+
 export const deleteCategory = (id: number) => ({
   type: DELETE_CATEGORY,
   payload: { id },
 });
+
 export const editCategory = (id: number, title: string, color: string) => ({
   type: EDIT_CATEGORY,
   payload: { id, title, color },
 });
+
 export const addItem = (id: number, title: string, content: string) => ({
   type: ADD_ITEM,
   payload: {
@@ -36,10 +39,12 @@ export const addItem = (id: number, title: string, content: string) => ({
     },
   },
 });
+
 export const deleteItem = (catId: number, itemId: number) => ({
   type: DELETE_ITEM,
   payload: { catId, itemId },
 });
+
 export const editItem = (
   catId: number,
   itemId: number,

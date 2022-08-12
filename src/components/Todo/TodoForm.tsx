@@ -8,6 +8,7 @@ const TodoForm = () => {
 
   const handleAddTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (text.trim().length <= 0) return;
     setText('');
     onCreate(text);
   };

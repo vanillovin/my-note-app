@@ -11,10 +11,12 @@ export const addTodo = (text: string) => ({
     text,
   },
 });
+
 export const deleteTodo = (id: number, category: Categories) => ({
   type: DELETE_TODO,
   payload: { id, category },
 });
+
 export const changeCategory = (
   id: number,
   curCat: Categories,

@@ -71,6 +71,7 @@ export default function diary(
         cat.id === action.payload.catId
           ? {
               ...cat,
+              updateDate: new Date().getTime(),
               items: cat.items.map((item) =>
                 item.id === action.payload.itemId
                   ? { ...item, ...action.payload.item }
