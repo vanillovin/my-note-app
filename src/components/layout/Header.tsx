@@ -1,28 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from '../ThemeToggle';
 import { AiFillHome } from 'react-icons/ai';
+import Clock from '../Clock';
 
 const Header = () => {
   const location = useLocation();
-  const [clock, setClock] = useState('');
-
-  function getTime() {
-    const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-    setClock(
-      `${hours < 10 ? `0${hours}` : hours}:${
-        minutes < 10 ? `0${minutes}` : minutes
-      }:${seconds < 10 ? `0${seconds}` : seconds}`
-    );
-  }
-
-  useEffect(() => {
-    const intervalId = setInterval(getTime, 1000);
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <div
@@ -34,11 +16,7 @@ const Header = () => {
           <AiFillHome size={25} className="w-5 tablet:w-auto" />
         </Link>
       </div>
-      <div className="hidden tablet:flex w-1/3 text-center items-center justify-center">
-        <p className="font-bold rounded-3xl border-2 border-white py-1 px-2 text:base tablet:text-xl">
-          {clock}
-        </p>
-      </div>
+      <Clock />
       <ul className="flex items-center w-1/3 justify-end">
         <ThemeToggle />
         {[
