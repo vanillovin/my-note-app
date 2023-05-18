@@ -12,6 +12,7 @@ export type Items = {
   title: string;
   content: string;
   createDate: number;
+  emoji: string;
 };
 
 export type Categories = {

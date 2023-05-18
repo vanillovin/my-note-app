@@ -24,7 +24,12 @@ export const editCategory = (id: number, title: string, color: string) => ({
   type: EDIT_CATEGORY,
   payload: { id, title, color },
 });
-export const addItem = (id: number, title: string, content: string) => ({
+export const addItem = (
+  id: number,
+  title: string,
+  content: string,
+  emoji: string
+) => ({
   type: ADD_ITEM,
   payload: {
     id,
@@ -33,6 +38,7 @@ export const addItem = (id: number, title: string, content: string) => ({
       title,
       content,
       createDate: new Date().getTime(),
+      emoji,
     },
   },
 });
@@ -44,12 +50,13 @@ export const editItem = (
   catId: number,
   itemId: number,
   title: string,
-  content: string
+  content: string,
+  emoji: string
 ) => ({
   type: EDIT_ITEM,
   payload: {
     catId,
     itemId,
-    item: { title, content },
+    item: { title, content, emoji },
   },
 });

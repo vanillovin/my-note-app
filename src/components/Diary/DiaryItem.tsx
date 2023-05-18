@@ -17,8 +17,6 @@ const DiaryItem = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as LocationState;
-
-  //
   const categoryId = location.pathname.split('/')[2] || state.id;
   const itemId = location.pathname.split('/')[3];
 
@@ -34,8 +32,8 @@ const DiaryItem = () => {
     onDeleteItem(+categoryId, +itemId);
   };
 
-  const handleEditItem = (title: string, content: string) => {
-    onEditItem(+categoryId, +itemId, title, content);
+  const handleEditItem = (title: string, content: string, emoji: string) => {
+    onEditItem(+categoryId, +itemId, title, content, emoji);
     closeModal();
   };
 
@@ -54,9 +52,11 @@ const DiaryItem = () => {
         <p className="text-sm tablet:text-base my-6 whitespace-pre-line text-stone-800 dark:text-stone-200">
           {item?.content}
         </p>
+
         <div className="flex items-center justify-between text-xs tablet:text-sm">
           <h4 className="text-xs">
-            {getDateString('locale', item?.createDate as number)}
+            {getDateString('locale', item?.createDate as number)}{' '}
+            <span className="text-base">{item?.emoji}</span>
           </h4>
           <div className="flex items-center select-none group">
             <div className="hidden group-hover:block">
@@ -78,8 +78,11 @@ const DiaryItem = () => {
       {isShowing && (
         <Modal>
           <ItemForm
-            prevTitle={item?.title as string}
-            prevContent={item?.content as string}
+            prevData={{
+              prevTitle: item?.title as string,
+              prevContent: item?.content as string,
+              prevEmoji: item?.emoji as string,
+            }}
             onClick={handleEditItem}
             handleCloseModal={closeModal}
           />

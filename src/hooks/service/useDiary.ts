@@ -20,8 +20,8 @@ const useDiary = () => {
   );
 
   const onAddItem = useCallback(
-    (id: number, title: string, content: string) =>
-      dispatch(addItem(id, title, content)),
+    (id: number, title: string, content: string, emoji: string) =>
+      dispatch(addItem(id, title, content, emoji)),
     [dispatch]
   );
 
@@ -31,8 +31,13 @@ const useDiary = () => {
   );
 
   const onEditItem = useCallback(
-    (catId: number, itemId: number, title: string, content: string) =>
-      dispatch(editItem(catId, itemId, title, content)),
+    (
+      catId: number,
+      itemId: number,
+      title: string,
+      content: string,
+      emoji: string
+    ) => dispatch(editItem(catId, itemId, title, content, emoji)),
     [dispatch]
   );
 

@@ -1,19 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 interface ItemFormProps {
-  prevTitle: string;
-  prevContent: string;
-  onClick: (title: string, content: string) => void;
+  prevData: { prevTitle: string; prevContent: string; prevEmoji: string };
+  onClick: (title: string, content: string, emoji: string) => void;
   handleCloseModal: () => void;
 }
 
-const ItemForm = ({
-  prevTitle,
-  prevContent,
-  onClick,
-  handleCloseModal,
-}: ItemFormProps) => {
+const emojis = ['😀', '😭', '🥰', '🤩', '😱', '😡'];
+
+const ItemForm = ({ prevData, onClick, handleCloseModal }: ItemFormProps) => {
   console.log('ItemForm');
+
+  const { prevTitle, prevContent, prevEmoji } = prevData;
+
+  const [selectedEmoji, setSelectedEmoji] = useState('');
 
   const titleInputRef = useRef<HTMLInputElement>(null);
   const contentInputRef = useRef<HTMLTextAreaElement>(null);
@@ -23,7 +23,8 @@ const ItemForm = ({
   useEffect(() => {
     if (titleInputRef.current) titleInputRef.current.value = prevTitle;
     if (contentInputRef.current) contentInputRef.current.value = prevContent;
-  }, [prevTitle, prevContent]);
+    setSelectedEmoji(prevEmoji);
+  }, [prevTitle, prevContent, prevEmoji]);
 
   const handleOnclick = () => {
     if (titleInputRef.current?.value === '') {
@@ -43,7 +44,8 @@ const ItemForm = ({
     } else setError(null);
     onClick(
       titleInputRef.current?.value as string,
-      contentInputRef.current?.value as string
+      contentInputRef.current?.value as string,
+      selectedEmoji
     );
     handleCloseModal();
   };
@@ -63,6 +65,20 @@ const ItemForm = ({
         placeholder="내용을 입력하세요"
         required
       />
+      <div className="flex items-center mb-4">
+        <p>오늘의 기분</p>
+        {emojis.map((emoji, i) => (
+          <button
+            key={i}
+            className={`ml-2 p-1 rounded-sm ${
+              selectedEmoji === emoji ? 'bg-gray-500' : 'bg-gray-300'
+            }`}
+            onClick={() => setSelectedEmoji(emoji)}
+          >
+            {emoji}
+          </button>
+        ))}
+      </div>
       <div className="flex justify-end text-sm">
         <button
           onClick={handleOnclick}

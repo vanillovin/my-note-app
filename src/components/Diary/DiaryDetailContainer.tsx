@@ -56,8 +56,8 @@ const DiaryDetailContainer = () => {
     navigate(`/diary/${categoryId}/${id}`, { state: { id: categoryId } });
   };
 
-  const handleAddItem = (title: string, content: string) => {
-    onAddItem(+categoryId, title, content);
+  const handleAddItem = (title: string, content: string, emoji: string) => {
+    onAddItem(+categoryId, title, content, emoji);
   };
 
   return (
@@ -137,8 +137,11 @@ const DiaryDetailContainer = () => {
       {isShowing && (
         <Modal>
           <ItemForm
-            prevTitle=""
-            prevContent=""
+            prevData={{
+              prevTitle: '',
+              prevContent: '',
+              prevEmoji: '',
+            }}
             onClick={handleAddItem}
             handleCloseModal={closeModal}
           />
