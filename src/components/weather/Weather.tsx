@@ -1,54 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getLocation } from '../../hooks/getLocation';
 import TodoProgress from '../todo/TodoProgress';
-
-type WeatherData = {
-  base: string;
-  clouds: object;
-  cod: number;
-  coord: object;
-  dt: number;
-  id: number;
-  main: {
-    feels_like: number;
-    humidity: number;
-    pressure: number;
-    temp: number;
-    temp_max: number;
-    temp_min: number;
-  };
-  name: string;
-  sys: {
-    country: string;
-    id: number;
-    sunrise: number;
-    sunset: number;
-    type: number;
-  };
-  timezone: number;
-  visibility: number;
-  weather: [{ id: number; main: string; description: string; icon: string }];
-  wind: object;
-};
-
-const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
+import useWeather from '../../hooks/useWeather';
 
 function Weather() {
-  const [weatherData, setWeatherData] = useState<WeatherData>();
-
-  useEffect(() => {
-    getLocation()
-      .then((res): any => {
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${res.latitude}&lon=${res.longitude}&appid=${API_KEY}&units=metric`;
-        fetch(url)
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log(data);
-            setWeatherData(data);
-          });
-      })
-      .catch((err) => alert(err));
-  }, []);
+  const [weatherData] = useWeather();
 
   return (
     <div
@@ -60,6 +14,10 @@ function Weather() {
         {weatherData ? (
           <>
             <div>
+              <p className="text-sm tablet:text-lg font-bold">
+                {weatherData.name !== '' &&
+                  `${weatherData.name}, ${weatherData.sys.country}`}
+              </p>
               <p className="text-sm tablet:text-lg font-bold">{`${weatherData.main.temp.toFixed()}℃`}</p>
               <p className="text-xs tablet:text-sm opacity-60">
                 {weatherData.weather[0].description}
