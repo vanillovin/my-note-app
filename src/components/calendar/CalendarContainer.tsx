@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 
@@ -24,7 +25,6 @@ const CalendarContainer = () => {
   const handleGetNextMonth = () => {
     if (month === 12) return;
     setDate((prev) => ({ ...prev, month: prev.month + 1 }));
-  };
 
   return (
     <div className="mx-4 my-8">
@@ -45,9 +45,7 @@ const CalendarContainer = () => {
           {'▶'}
         </button>
       </div>
-
       <Calendar year={year} month={month} />
-
       {schdulePath && (
         <Modal>
           <Outlet />

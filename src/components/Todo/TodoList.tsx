@@ -1,4 +1,3 @@
-import React from 'react';
 import useTodos from '../../hooks/service/useTodos';
 import { Categories } from '../../modules/todos';
 import Todo from './Todo';

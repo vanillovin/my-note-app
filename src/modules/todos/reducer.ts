@@ -39,7 +39,6 @@ export default function todos(
           },
         ],
       };
-
     default:
       return state;
   }

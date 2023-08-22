@@ -1,12 +1,11 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router';
 import useDiary from '../../hooks/service/useDiary';
 import useModal from '../../hooks/useModal';
 import { RootState } from '../../modules';
+import { getDateString } from '../../utils/utils';
 import Modal from '../modal';
 import CategoryForm from './CategoryForm';
-import { getDateString } from './DiaryContainer';
 import ItemForm from './ItemForm';
 
 export type DiaryItemParams = {
@@ -19,27 +18,21 @@ export type LocationState = {
 
 const DiaryDetailContainer = () => {
   const { id } = useParams<DiaryItemParams>();
-
   const navigate = useNavigate();
   const location = useLocation();
-
   const state = location.state as LocationState;
-
   const categoryId = location.pathname.split('/')[2] || state.id;
   const itemId = location.pathname.split('/')[3];
-
   const diary = useSelector((state: RootState) =>
     state.diary.find((v) => v.id === +categoryId)
   );
   const item = diary?.items.find((item) => item.id === +itemId);
-
   const { isShowing, openModal, closeModal } = useModal();
   const {
     isShowing: isEditShowing,
     openModal: openEditModal,
     closeModal: closeEditModal,
   } = useModal();
-
   const { onAddItem, onDeleteCategory, onEditCategory } = useDiary();
 
   const handleDeleteCategory = () => {
