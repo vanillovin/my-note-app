@@ -37,6 +37,6 @@ body {
     @apply text-blue-400 dark:text-blue-400;
   }
   .cal-day-cir {
-    @apply bg-amber-200 dark:bg-white dark:bg-opacity-20 tablet:bg-transparent dark:tablet:bg-transparent;
+    @apply tablet:w-7 tablet:h-7 ml-1 tablet:-ml-1 tablet:text-center bg-amber-200 dark:bg-white dark:bg-opacity-20;
   }
 }

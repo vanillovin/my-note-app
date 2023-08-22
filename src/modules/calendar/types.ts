@@ -1,14 +1,24 @@
 import { createOrUpdateSchedule, deleteSchedule } from './actions';
 
-export type Calendar = {
-  space: number;
-  holidyas: number[];
-  [key: number]: {
-    [key: number]: string;
-  };
-};
+export interface CalendarDay {
+  name: string;
+  text: string;
+  isHoliday: boolean;
+  bgColor: string;
+}
 
-export type CalendarState = Calendar[];
+export interface CalendarMonth {
+  space: number;
+  days: { [day: number]: CalendarDay };
+}
+
+export interface CalendarYear {
+  [month: number]: CalendarMonth;
+}
+
+export interface CalendarState {
+  [year: number]: CalendarYear;
+}
 
 export type CalendarAction =
   | ReturnType<typeof createOrUpdateSchedule>

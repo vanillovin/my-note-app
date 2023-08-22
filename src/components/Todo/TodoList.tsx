@@ -19,7 +19,7 @@ const TodoList = () => {
             className="tablet:w-1/3 bg-white border border-white m-2 p-3 rounded-sm shadow-lg dark:bg-black"
           >
             <h2 className="text-sm tablet:text-base font-bold mb-2 pb-2 border-b border-gray-200 dark:text-white">
-              {v.toUpperCase()}
+              📍 {v.toUpperCase()}
             </h2>
             <ul>
               {todos[v].map(({ id, text }: { id: number; text: string }) => (

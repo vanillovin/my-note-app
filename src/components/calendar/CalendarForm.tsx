@@ -4,7 +4,7 @@ import useCalendar from '../../hooks/service/useCalendar';
 
 type LocationState = {
   year: string;
-  mon: string;
+  month: string;
   day: string;
   text: string;
 };
@@ -13,7 +13,7 @@ const CalendarForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { onCreateOrUpdateSchedule, onDeleteSchedule } = useCalendar();
-  const { year, mon, day, text } = location.state as LocationState;
+  const { year, month, day, text } = location.state as LocationState;
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState('');
   const [newText, setNewText] = useState(text);
@@ -28,13 +28,13 @@ const CalendarForm = () => {
       setError('20자 이하로 입력해 주세요');
       return;
     } else setError('');
-    onCreateOrUpdateSchedule(+day, newText);
+    onCreateOrUpdateSchedule(+year, +month, +day, newText);
     setEdit(false);
   };
 
   const handleDeleteSchedule = () => {
     if (!window.confirm('스케줄을 삭제하시겠습니까?')) return;
-    onDeleteSchedule(+day);
+    onDeleteSchedule(+year, +month, +day);
     setNewText('');
   };
 
@@ -46,7 +46,7 @@ const CalendarForm = () => {
   return (
     <div className="flex flex-col tablet:w-80">
       <h1 className="font-bold text-lg border-b pb-1 dark:text-white">
-        {year}.{mon}.{day}
+        {year}.{month}.{day}
       </h1>
 
       {!edit ? (

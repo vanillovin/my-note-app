@@ -1,42 +1,52 @@
 import { CREATE_OR_UPDATE_SCHEDULE, DELETE_SCHEDULE } from './actions';
 import { CalendarAction, CalendarState } from './types';
-import calendarState from './calendarState';
+import initialCalendarData from './calendarData';
 
-const date = new Date();
-const year = date.getFullYear();
-const month = date.getMonth();
-
-const initialState: CalendarState = calendarState;
+const initialState: CalendarState = initialCalendarData;
 
 export default function calendar(
   state: CalendarState = initialState,
   action: CalendarAction
 ): CalendarState {
   switch (action.type) {
-    case CREATE_OR_UPDATE_SCHEDULE:
-      return state.map((mon, i) =>
-        i === month
-          ? {
-              ...mon,
-              [year]: {
-                ...mon[year],
-                [action.payload.day]: action.payload.text,
+    case CREATE_OR_UPDATE_SCHEDULE: {
+      const { year, month, day, text } = action.payload;
+      return {
+        ...state,
+        [year]: {
+          ...state[year],
+          [month]: {
+            ...state[year][month],
+            days: {
+              ...state[year][month].days,
+              [day]: {
+                ...state[year][month].days[day],
+                text,
               },
-            }
-          : mon
-      );
-    case DELETE_SCHEDULE:
-      return state.map((mon, i) =>
-        i === month
-          ? {
-              ...mon,
-              [year]: {
-                ...mon[year],
-                [action.payload.day]: '',
+            },
+          },
+        },
+      };
+    }
+    case DELETE_SCHEDULE: {
+      const { year, month, day } = action.payload;
+      return {
+        ...state,
+        [year]: {
+          ...state[year],
+          [month]: {
+            ...state[year][month],
+            days: {
+              ...state[year][month].days,
+              [day]: {
+                ...state[year][month].days[day],
+                text: '',
               },
-            }
-          : mon
-      );
+            },
+          },
+        },
+      };
+    }
     default:
       return state;
   }

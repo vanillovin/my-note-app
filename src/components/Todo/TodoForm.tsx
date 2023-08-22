@@ -16,7 +16,7 @@ const TodoForm = () => {
     <form className="flex p-2 w-full" onSubmit={handleAddTodo}>
       <input
         className="rounded-sm p-2 outline-none border-b-2 border-white bg-transparent text-white
-                  transition-all flex-grow placeholder:text-transparent placeholder:hover:text-white"
+                  transition-all flex-grow placeholder:text-white"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="할 일을 입력하세요"

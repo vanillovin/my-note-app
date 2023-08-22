@@ -9,12 +9,14 @@ const useCalendar = () => {
   const calendar = useSelector((state: RootState) => state.calendar);
 
   const onCreateOrUpdateSchedule = useCallback(
-    (day: number, text: string) => dispatch(createOrUpdateSchedule(day, text)),
+    (year: number, month: number, day: number, text: string) =>
+      dispatch(createOrUpdateSchedule(year, month, day, text)),
     [dispatch]
   );
 
   const onDeleteSchedule = useCallback(
-    (day: number) => dispatch(deleteSchedule(day)),
+    (year: number, month: number, day: number) =>
+      dispatch(deleteSchedule(year, month, day)),
     [dispatch]
   );
 
