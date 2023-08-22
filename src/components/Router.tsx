@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 
 import App from '../App';
 import Header from './layout/Header';
@@ -10,7 +10,7 @@ import CalendarForm from './calendar/CalendarForm';
 
 const Router = () => {
   return (
-    <BrowserRouter basename="/">
+    <HashRouter basename="/">
       <Header />
       <Routes>
         <Route path="/" element={<App />} />
@@ -30,7 +30,7 @@ const Router = () => {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
