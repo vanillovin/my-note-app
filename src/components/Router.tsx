@@ -1,16 +1,16 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import App from '../App';
-import Calendar from '../pages/Calendar';
+import Header from './layout/Header';
 import Diary from '../pages/Diary';
 import DiaryDetail from '../pages/DiaryDetail';
+import DiaryItem from '../pages/DiaryItem';
+import Calendar from '../pages/Calendar';
 import CalendarForm from './calendar/CalendarForm';
-import DiaryItem from './diary/DiaryItem';
-import Header from './layout/Header';
 
 const Router = () => {
   return (
-    <HashRouter basename="/">
+    <BrowserRouter basename="/">
       <Header />
       <Routes>
         <Route path="/" element={<App />} />
@@ -30,7 +30,7 @@ const Router = () => {
           }
         />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

@@ -1,21 +1,25 @@
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams, useLocation } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 
-import Modal from '../modal';
-import ItemForm from './ItemForm';
-import useModal from '../../hooks/useModal';
-import useDiary from '../../hooks/service/useDiary';
-import { RootState } from '../../modules';
-import { getDateString } from '../../utils/utils';
-import type { DiaryItemParams, LocationState } from './DiaryDetailContainer';
+import useModal from '../hooks/useModal';
+import useDiary from '../hooks/service/useDiary';
+import type { RootState } from '../modules';
+import { getDateString } from '../utils/utils';
+import Modal from '../components/modal';
+import ItemForm from '../components/diary/ItemForm';
+import type {
+  DiaryItemParams,
+  LocationState,
+} from '../components/diary/DiaryDetailContainer';
 
 function DiaryItem() {
-  const { id: itemId } = useParams<keyof DiaryItemParams>() as DiaryItemParams;
-  const { isShowing, openModal, closeModal } = useModal();
-  const { onDeleteItem, onEditItem } = useDiary();
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as LocationState;
+
+  const { id: itemId } = useParams<keyof DiaryItemParams>() as DiaryItemParams;
+  const { isShowing, openModal, closeModal } = useModal();
+  const { onDeleteItem, onEditItem } = useDiary();
   const categoryId = location.pathname.split('/')[2] || state.id;
 
   const items = useSelector(
