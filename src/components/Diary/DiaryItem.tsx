@@ -1,14 +1,15 @@
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams, useLocation } from 'react-router';
-import useDiary from '../../hooks/service/useDiary';
+
+import Modal from '../modal';
+import ItemForm from './ItemForm';
 import useModal from '../../hooks/useModal';
+import useDiary from '../../hooks/service/useDiary';
 import { RootState } from '../../modules';
 import { getDateString } from '../../utils/utils';
-import Modal from '../modal';
-import { DiaryItemParams, LocationState } from './DiaryDetailContainer';
-import ItemForm from './ItemForm';
+import type { DiaryItemParams, LocationState } from './DiaryDetailContainer';
 
-const DiaryItem = () => {
+function DiaryItem() {
   const { id: itemId } = useParams<keyof DiaryItemParams>() as DiaryItemParams;
   const { isShowing, openModal, closeModal } = useModal();
   const { onDeleteItem, onEditItem } = useDiary();
@@ -88,6 +89,6 @@ const DiaryItem = () => {
       )}
     </div>
   );
-};
+}
 
 export default DiaryItem;

@@ -17,12 +17,14 @@ export const COLORS = {
 
 export const days = ['일', '월', '화', '수', '목', '금', '토'];
 
-export const getDateData = () => {
+export function getCurrentDate() {
   const date = new Date();
-  const year = date.getFullYear();
-  const mon = date.getMonth() + 1;
-  return { date, year, mon };
-};
+  const curDate = date.getDate();
+  const curDay = date.getDay();
+  const curYear = date.getFullYear();
+  const curMonth = date.getMonth() + 1;
+  return { curDate, curDay, curMonth, curYear };
+}
 
 export const getDateString = (type: 'localeDate' | 'locale', time: number) => {
   const updateDate = new Date(time);

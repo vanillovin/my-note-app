@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 
 import useCalendar from '../../hooks/service/useCalendar';
-import { days, getCurrentDate } from './dateUtils';
+import { days, getCurrentDate } from '../../utils/utils';
 
 function Calendar({ year, month }: { year: number; month: number }) {
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router';
 
 import Modal from '../modal';
 import Calendar from './Calendar';
-import { getCurrentDate } from './dateUtils';
+import { getCurrentDate } from '../../utils/utils';
 
 function CalendarContainer() {
   const location = useLocation();
