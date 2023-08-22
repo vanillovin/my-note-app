@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 
@@ -6,7 +5,7 @@ import Modal from '../modal';
 import Calendar from './Calendar';
 import { getCurrentDate } from './dateUtils';
 
-const CalendarContainer = () => {
+function CalendarContainer() {
   const location = useLocation();
   const schdulePath = location.pathname.includes('new');
   const { curYear, curMonth } = getCurrentDate();
@@ -25,6 +24,7 @@ const CalendarContainer = () => {
   const handleGetNextMonth = () => {
     if (month === 12) return;
     setDate((prev) => ({ ...prev, month: prev.month + 1 }));
+  };
 
   return (
     <div className="mx-4 my-8">
@@ -53,6 +53,6 @@ const CalendarContainer = () => {
       )}
     </div>
   );
-};
+}
 
 export default CalendarContainer;
