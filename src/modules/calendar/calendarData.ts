@@ -419,7 +419,12 @@ const initialCalendarData: CalendarState = {
       space: 0,
       days: {
         1: { name: '국군의 날', text: '', isHoliday: true, bgColor: '' },
-        2: { name: '노인의 날', text: '', isHoliday: false, bgColor: '' },
+        2: {
+          name: '임시공휴일, 노인의 날',
+          text: '',
+          isHoliday: true,
+          bgColor: '',
+        },
         3: { name: '개천절', text: '', isHoliday: true, bgColor: '' },
         4: { name: '', text: '', isHoliday: false, bgColor: '' },
         5: { name: '세계 한인의 날', text: '', isHoliday: false, bgColor: '' },
