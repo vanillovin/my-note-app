@@ -7,6 +7,7 @@ import DiaryDetail from '../pages/DiaryDetail';
 import DiaryItem from '../pages/DiaryItem';
 import Calendar from '../pages/Calendar';
 import CalendarForm from './calendar/CalendarForm';
+import NotFound from '../pages/NotFound';
 
 const Router = () => {
   return (
@@ -21,14 +22,7 @@ const Router = () => {
         <Route path="/calendar" element={<Calendar />}>
           <Route path="new" element={<CalendarForm />} />
         </Route>
-        <Route
-          path="*"
-          element={
-            <main style={{ padding: '1rem' }}>
-              <p>There's nothing here!</p>
-            </main>
-          }
-        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </HashRouter>
   );
