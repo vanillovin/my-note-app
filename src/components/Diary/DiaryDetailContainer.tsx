@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router';
-import useDiary from '../../hooks/service/useDiary';
-import useModal from '../../hooks/useModal';
-import { RootState } from '../../modules';
-import { getDateString } from '../../utils/utils';
+
 import Modal from '../modal';
-import CategoryForm from './CategoryForm';
 import ItemForm from './ItemForm';
+import CategoryForm from './CategoryForm';
+import useModal from '../../hooks/useModal';
+import { type RootState } from '../../modules';
+import useDiary from '../../hooks/service/useDiary';
+import { getDateString } from '../../utils/utils';
 
 export type DiaryItemParams = {
   id: string;
@@ -16,6 +18,8 @@ export type LocationState = {
   id: number;
 };
 
+type SearchOption = 'title' | 'content';
+
 const DiaryDetailContainer = () => {
   const { id } = useParams<DiaryItemParams>();
   const navigate = useNavigate();
@@ -23,6 +27,8 @@ const DiaryDetailContainer = () => {
   const state = location.state as LocationState;
   const categoryId = location.pathname.split('/')[2] || state.id;
   const itemId = location.pathname.split('/')[3];
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchOption, setSearchOption] = useState<SearchOption>('title');
   const diary = useSelector((state: RootState) =>
     state.diary.find((v) => v.id === +categoryId)
   );
@@ -53,17 +59,20 @@ const DiaryDetailContainer = () => {
     onAddItem(+categoryId, title, content, emoji);
   };
 
+  const filteredItems = !searchTerm
+    ? diary?.items
+    : diary?.items.filter((item) =>
+        item[searchOption].toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
   return (
     <>
       <div className="m-10">
-        <form>
-          <input />
-        </form>
         <div
           className="flex flex-wrap items-center justify-between border-b-2 border-white 
             dark:border-stone-300  pb-3 mb-3 tablet:pb-5 tablet:mb-5"
         >
-          <div className="flex flex-wrap items-end dark:text-stone-300">
+          <div className="flex flex-wrap items-center dark:text-stone-300">
             <h2 className="text-sm tablet:text-lg font-bold mr-1">
               {diary?.title}
             </h2>
@@ -89,13 +98,33 @@ const DiaryDetailContainer = () => {
           </div>
         </div>
 
+        <form className="my-4 p-1 flex items-center bg-white rounded-lg">
+          <select
+            onChange={(e) => setSearchOption(e.target.value as SearchOption)}
+            className="p-1 outline-none"
+          >
+            <option value="title" className="">
+              제목
+            </option>
+            <option value="content" className="">
+              내용
+            </option>
+          </select>
+          <input
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="p-2 flex-1 outline-none"
+            placeholder="다이어리 아이템 검색하기"
+          />
+        </form>
+
         <div className="flex flex-col tablet:flex-row">
           <ul
             className={`${
               item ? 'w-full tablet:w-2/5' : 'w-full'
             } flex flex-wrap`}
           >
-            {diary?.items.map(({ id, title, createDate }) => (
+            {filteredItems?.map(({ id, title, createDate }) => (
               <li
                 key={id}
                 onClick={() => handleOnClickItem(+id)}
