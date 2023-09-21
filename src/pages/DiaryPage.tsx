@@ -1,7 +1,5 @@
 import DiaryContainer from '../components/diary/DiaryContainer';
 
-const Diary = () => {
+export default function DiaryPage() {
   return <DiaryContainer />;
-};
-
-export default Diary;
+}

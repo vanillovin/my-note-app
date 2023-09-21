@@ -1,7 +1,5 @@
 import CalendarContainer from '../components/calendar/CalendarContainer';
 
-const Calendar = () => {
+export default function CalendarPage() {
   return <CalendarContainer />;
-};
-
-export default Calendar;
+}

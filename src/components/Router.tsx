@@ -2,12 +2,12 @@ import { Routes, Route, HashRouter } from 'react-router-dom';
 
 import App from '../App';
 import Header from './layout/Header';
-import Diary from '../pages/Diary';
-import DiaryDetail from '../pages/DiaryDetail';
-import DiaryItem from '../pages/DiaryItem';
-import Calendar from '../pages/Calendar';
+import DiaryPage from '../pages/DiaryPage';
+import DiaryDetailPage from '../pages/DiaryDetailPage';
+import DiaryItemPage from '../pages/DiaryItemPage';
+import CalendarPage from '../pages/CalendarPage';
 import CalendarForm from './calendar/CalendarForm';
-import NotFound from '../pages/NotFound';
+import NotFoundPage from '../pages/NotFoundPage';
 
 const Router = () => {
   return (
@@ -15,14 +15,14 @@ const Router = () => {
       <Header />
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/diary" element={<Diary />}></Route>
-        <Route path="/diary/:id" element={<DiaryDetail />}>
-          <Route path=":id" element={<DiaryItem />} />
+        <Route path="/diary" element={<DiaryPage />}></Route>
+        <Route path="/diary/:id" element={<DiaryDetailPage />}>
+          <Route path=":id" element={<DiaryItemPage />} />
         </Route>
-        <Route path="/calendar" element={<Calendar />}>
+        <Route path="/calendar" element={<CalendarPage />}>
           <Route path="new" element={<CalendarForm />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </HashRouter>
   );

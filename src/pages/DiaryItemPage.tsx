@@ -12,7 +12,7 @@ import type {
   LocationState,
 } from '../components/diary/DiaryDetailContainer';
 
-function DiaryItem() {
+export default function DiaryItemPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as LocationState;
@@ -94,5 +94,3 @@ function DiaryItem() {
     </div>
   );
 }
-
-export default DiaryItem;

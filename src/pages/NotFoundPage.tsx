@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
     <main className="flex flex-col items-center justify-center p-36 gap-y-2">
       <p className="text-lg">존재하지 않는 페이지입니다!</p>

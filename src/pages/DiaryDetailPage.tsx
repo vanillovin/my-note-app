@@ -1,7 +1,5 @@
 import DiaryDetailContainer from '../components/diary/DiaryDetailContainer';
 
-const DiaryDetail = () => {
+export default function DiaryDetailPage() {
   return <DiaryDetailContainer />;
-};
-
-export default DiaryDetail;
+}
