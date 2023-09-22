@@ -17,13 +17,21 @@ function CalendarContainer() {
   const { year, month } = date;
 
   const handleGetPrevMonth = () => {
-    if (month === 1) return;
-    setDate((prev) => ({ ...prev, month: prev.month - 1 }));
+    if (month === 1) {
+      if (year === 2023) return;
+      setDate((prev) => ({ ...prev, year: prev.year - 1, month: 12 }));
+    } else {
+      setDate((prev) => ({ ...prev, month: prev.month - 1 }));
+    }
   };
 
   const handleGetNextMonth = () => {
-    if (month === 12) return;
-    setDate((prev) => ({ ...prev, month: prev.month + 1 }));
+    if (month === 12) {
+      if (year === 2024) return;
+      setDate((prev) => ({ ...prev, year: prev.year + 1, month: 1 }));
+    } else {
+      setDate((prev) => ({ ...prev, month: prev.month + 1 }));
+    }
   };
 
   return (
@@ -36,7 +44,7 @@ function CalendarContainer() {
           {'◀'}
         </button>
         <h1 className="font-bold tablet:text-xl mx-2">
-          {year}.{month}
+          {year}. {month}
         </h1>
         <button
           className="text-xs tablet:text-sm p-2"
