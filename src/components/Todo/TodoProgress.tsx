@@ -10,7 +10,7 @@ function TodoProgress() {
       : 0;
 
   return (
-    <div className="py-2 pr-1 tablet:px-6 border-r w-1/2 flex flex-col justify-center">
+    <div className="py-2 pr-1 tablet:px-6 border-r dark:border-black w-1/2 flex flex-col justify-center">
       <div className="flex justify-between px-1 pb-1">
         <p className="text-xs tablet:text-base">Goals</p>
         <p className="text-xs tablet:text-base">

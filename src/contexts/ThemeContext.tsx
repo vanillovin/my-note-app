@@ -19,21 +19,21 @@ const getInitialTheme = (): Theme => {
     }
   }
 
-  return 'light'; // light theme as the default;
+  return 'light';
 };
 
 export const ThemeContext = createContext<State>({} as State);
 
 interface ThemeProviderProps {
-  initialTheme: any;
+  // initialTheme: any;
   children: React.ReactNode;
 }
 
 export const ThemeProvider = ({
-  initialTheme,
+  // initialTheme,
   children,
 }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [theme, setTheme] = useState<Theme>(getInitialTheme());
 
   const rawSetTheme = (rawTheme: string) => {
     const root = window.document.documentElement;
@@ -45,9 +45,9 @@ export const ThemeProvider = ({
     localStorage.setItem('color-theme', rawTheme);
   };
 
-  if (initialTheme) {
-    rawSetTheme(initialTheme);
-  }
+  // if (initialTheme) {
+  //   rawSetTheme(initialTheme);
+  // }
 
   useEffect(() => {
     rawSetTheme(theme);

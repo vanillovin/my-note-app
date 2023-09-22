@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
@@ -27,7 +26,7 @@ const persistor = persistStore(store);
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={<Loading />} persistor={persistor}>
-      <ThemeProvider initialTheme="light">
+      <ThemeProvider>
         <Layout>
           <Router />
         </Layout>
