@@ -15,7 +15,7 @@ const Router = () => {
       <Header />
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/diary" element={<DiaryPage />}></Route>
+        <Route path="/diary" element={<DiaryPage />} />
         <Route path="/diary/:id" element={<DiaryDetailPage />}>
           <Route path=":id" element={<DiaryItemPage />} />
         </Route>
